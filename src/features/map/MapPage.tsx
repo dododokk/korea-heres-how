@@ -1,3 +1,9 @@
+import Header from './components/header'
+
 export default function MapPage() {
-  return <div>Map</div>
+  return (
+    <div>
+      <Header />
+    </div>
+  )
 }

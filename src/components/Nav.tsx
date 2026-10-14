@@ -23,7 +23,7 @@ const size = (px: number) => `min(${px / 16}rem, ${px}px)`
 export default function Nav() {
   return (
     <nav className="fixed inset-x-0 bottom-0 z-50 border-t border-black/5 bg-[#E07A5F] pb-[env(safe-area-inset-bottom)]">
-      <ul className="flex h-[min(4.625rem,74px)]">
+      <ul className="flex h-[min(3.75rem,60px)]">
         {NAV_ITEMS.map(({ to, label, on, off }) => (
           <li key={to} className="flex-1">
             <NavLink
