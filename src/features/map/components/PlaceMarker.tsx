@@ -3,7 +3,6 @@ import placeOrange from "../../../assets/map/place-orange.svg";
 import placeWhite from "../../../assets/map/place-white.svg";
 import { formatDistance, type LatLng } from "./useMyLocation";
 
-// 작은 화면에서는 rem 비율대로 줄어들고, 큰 화면에서는 피그마 원본 크기(px)보다 커지지 않는다.
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 
 type PlaceMarkerProps = {

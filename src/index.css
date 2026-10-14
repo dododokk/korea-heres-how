@@ -19,5 +19,15 @@ body {
 }
 
 button {
-  cursor: pointer;  
+  cursor: pointer;
+}
+
+/* AI 채팅 답변 중 점점점: 점이 차례로(왼쪽 → 오른쪽) 진해졌다 흐려지기를 반복한다. */
+@keyframes typing-dot {
+  0%, 60%, 100% {
+    background-color: rgba(224, 122, 95, 0.5);
+  }
+  30% {
+    background-color: rgba(224, 122, 95, 1);
+  }
 }
