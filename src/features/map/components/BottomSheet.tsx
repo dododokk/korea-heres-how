@@ -14,10 +14,16 @@ type Snap = 0 | 1 | 2; // 0: 최소(손잡이 + 제목만), 1: 중간(피그마)
 
 type BottomSheetProps = {
   count?: number;
+  // 시트 위쪽 오른편에 띄워서 시트와 같이 움직일 요소 (AI 버튼 등)
+  floating?: ReactNode;
   children?: ReactNode;
 };
 
-export default function BottomSheet({ count, children }: BottomSheetProps) {
+export default function BottomSheet({
+  count,
+  floating,
+  children,
+}: BottomSheetProps) {
   const sheetRef = useRef<HTMLDivElement>(null);
   const grabRef = useRef<HTMLDivElement>(null);
   const drag = useRef<{
@@ -122,6 +128,11 @@ export default function BottomSheet({ count, children }: BottomSheetProps) {
       // 시트 자체는 지도 영역 높이만큼 크게 두고, 보여줄 높이만큼만 위로 올린다.
       style={{ transform: `translateY(calc(100% - ${height}px))` }}
     >
+      {floating && (
+        <div className="absolute right-[min(1rem,16px)] bottom-[calc(100%+min(1rem,16px))]">
+          {floating}
+        </div>
+      )}
       <div
         ref={grabRef}
         className="shrink-0 cursor-grab touch-none select-none active:cursor-grabbing"

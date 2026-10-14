@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { CustomOverlayMap, Map, useKakaoLoader } from "react-kakao-maps-sdk";
-import { type LatLng, useMyLocation } from "./useMyLocation";
+import type { LatLng, MyLocationState } from "./useMyLocation";
 
 const DEFAULT_LEVEL = 2;
 
-export default function KakaoMap() {
+type KakaoMapProps = {
+  myLocation: MyLocationState;
+  // 지도 객체가 만들어지면 넘겨준다. (현재 위치 버튼에서 panTo로 이동할 때 사용)
+  onCreate?: (map: kakao.maps.Map) => void;
+  // 사용자가 지도를 끌기 시작하면 알린다. (따라가기 모드 끄기)
+  onDragStart?: () => void;
+  // 지도 이동/줌이 끝날 때마다 알린다. (현재 영역으로 장소 조회)
+  onIdle?: (map: kakao.maps.Map) => void;
+  // 장소 마커 등 지도 위에 올릴 것들
+  children?: ReactNode;
+};
+
+export default function KakaoMap({
+  myLocation,
+  onCreate,
+  onDragStart,
+  onIdle,
+  children,
+}: KakaoMapProps) {
   const [loading, error] = useKakaoLoader({
     appkey: import.meta.env.VITE_KAKAO_JS_KEY,
   });
-  const myLocation = useMyLocation();
 
   // 앱 진입 시 처음 받은 위치(또는 기본 위치)로 한 번만 지도를 옮긴다.
-  // 이후에는 위치가 바뀌어도 지도는 그대로 두고 파란 점만 움직인다. (따라가기 모드는 현재 위치 버튼 구현 때 추가)
+  // 이후에는 위치가 바뀌어도 지도는 그대로 두고 파란 점만 움직인다. (따라가기 모드일 때는 MapPage에서 지도를 옮긴다)
   const [center, setCenter] = useState<LatLng | null>(null);
   if (center === null && myLocation.status !== "loading") {
     setCenter(myLocation.position);
@@ -25,7 +42,15 @@ export default function KakaoMap() {
   }
 
   return (
-    <Map center={center} level={DEFAULT_LEVEL} className="size-full">
+    <Map
+      center={center}
+      level={DEFAULT_LEVEL}
+      className="size-full"
+      onCreate={onCreate}
+      onDragStart={onDragStart}
+      onIdle={onIdle}
+    >
+      {children}
       {myLocation.status === "success" && (
         <CustomOverlayMap
           position={myLocation.position}

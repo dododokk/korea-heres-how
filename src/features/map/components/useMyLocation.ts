@@ -25,7 +25,14 @@ export function distanceM(a: LatLng, b: LatLng) {
   return 2 * R * Math.asin(Math.sqrt(h))
 }
 
-type MyLocationState =
+// 거리(m)를 "2.1 km · 도보 27분" 형태로 바꾼다. 도보 시간 = 거리(m) ÷ 80 (분)
+export function formatDistance(m: number) {
+  const km = (m / 1000).toFixed(1);
+  const walkMin = Math.max(1, Math.round(m / 80));
+  return `${km} km · 도보 ${walkMin}분`;
+}
+
+export type MyLocationState =
   | { status: 'loading' }
   | { status: 'success'; position: LatLng }
   | { status: 'fallback'; position: LatLng }
