@@ -45,7 +45,7 @@ export default function Header({
             <span className="absolute -top-[min(0.125rem,2px)] left-[min(1.75rem,28px)] size-[min(0.625rem,10px)] rounded-full border-2 border-[#FBF6EA] bg-[#A9BBA0]" />
           </div>
           <div className="flex flex-col">
-            <h1 className="font-['Fraunces',serif] text-[min(1rem,16px)] font-semibold leading-[min(1.25rem,20px)] tracking-[-0.025em] text-[#2B2118]">
+            <h1 className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(1rem,16px)] font-semibold leading-[min(1.25rem,20px)] tracking-[-0.025em] text-[#2B2118]">
               여기서는?
             </h1>
             <p className="font-['Roboto',sans-serif] text-[min(0.5625rem,9px)] leading-[min(0.703rem,11.25px)] tracking-[0.14em] text-[rgba(43,33,24,0.55)]">
