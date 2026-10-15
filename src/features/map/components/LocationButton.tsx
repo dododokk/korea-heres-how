@@ -13,7 +13,7 @@ export default function LocationButton({ onClick }: LocationButtonProps) {
       type="button"
       onClick={onClick}
       aria-label="내 위치로 이동"
-      className="flex size-[min(2.75rem,44px)] items-center justify-center rounded-full border border-[rgba(43,33,24,0.08)] bg-[rgba(251,246,234,0.95)] shadow-[0_4px_14px_rgba(43,33,24,0.1)]"
+      className="flex size-[min(2.75rem,44px)] items-center justify-center rounded-full border border-[rgba(43,33,24,0.08)] bg-[rgba(251,245,238,0.95)] shadow-[0_4px_14px_rgba(43,33,24,0.1)]"
     >
       <img
         src={locationIcon}

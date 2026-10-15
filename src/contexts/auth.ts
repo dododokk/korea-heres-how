@@ -4,6 +4,7 @@ import type { LoginResult } from "../api/auth";
 export type AuthContextValue = {
   user: LoginResult | null;
   login: (email: string, password: string) => Promise<void>;
+  logout: () => void;
 };
 
 export const AuthContext = createContext<AuthContextValue | null>(null);

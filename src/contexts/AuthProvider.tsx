@@ -28,7 +28,16 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     setUser(result);
   }, []);
 
-  const value = useMemo(() => ({ user, login }), [user, login]);
+  const logout = useCallback(() => {
+    try {
+      sessionStorage.removeItem(STORAGE_KEY);
+    } catch {
+      // 저장이 막힌 환경이면 지울 것도 없다.
+    }
+    setUser(null);
+  }, []);
+
+  const value = useMemo(() => ({ user, login, logout }), [user, login, logout]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

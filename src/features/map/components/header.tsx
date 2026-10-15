@@ -42,7 +42,7 @@ export default function Header({
               alt=""
               style={{ width: size(18), height: size(17) }}
             />
-            <span className="absolute -top-[min(0.125rem,2px)] left-[min(1.75rem,28px)] size-[min(0.625rem,10px)] rounded-full border-2 border-[#FBF6EA] bg-[#A9BBA0]" />
+            <span className="absolute -top-[min(0.125rem,2px)] left-[min(1.75rem,28px)] size-[min(0.625rem,10px)] rounded-full border-2 border-[#FBF5EE] bg-[#A9BBA0]" />
           </div>
           <div className="flex flex-col">
             <h1 className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(1rem,16px)] font-semibold leading-[min(1.25rem,20px)] tracking-[-0.025em] text-[#2B2118]">

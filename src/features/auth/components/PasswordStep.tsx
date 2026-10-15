@@ -1,6 +1,7 @@
 import { type FormEvent, useState } from "react";
 import { Link } from "react-router";
 import back from "../../../assets/aichat/back.svg";
+import eyeOff from "../../../assets/auth/eye-off.svg";
 import eye from "../../../assets/auth/eye.svg";
 import id from "../../../assets/auth/id.svg";
 import AuthField from "./AuthField";
@@ -96,12 +97,12 @@ export default function PasswordStep({
             aria-pressed={visible}
             className="absolute right-[min(0.5rem,8px)] bottom-[min(0.3125rem,5px)] flex size-[min(2rem,32px)] items-center justify-center"
           >
-            <img
-              src={eye}
-              alt=""
-              className={visible ? "opacity-100" : "opacity-50"}
-              style={{ width: size(18), height: size(17) }}
-            />
+            {/* 지금 상태를 보여준다: 보이는 중이면 eye, 숨김이면 eye-off (eye-off는 여백 포함 30px 아이콘) */}
+            {visible ? (
+              <img src={eye} alt="" style={{ width: size(18), height: size(17) }} />
+            ) : (
+              <img src={eyeOff} alt="" style={{ width: size(30), height: size(30) }} />
+            )}
           </button>
         </AuthField>
         <div className="pt-[min(1rem,16px)]">
