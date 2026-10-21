@@ -17,7 +17,13 @@ const COPIED_MS = 2000;
 // "이렇게 말해보세요" 한국어 표현 카드. 안내문 해석, 관광지 상세 등 여러 화면에서 같이 쓴다.
 // 북마크: 저장/해제 토글 / 소리: 한국어로 읽어주기 / 복사: 한국어 문장 복사
 // Show to staff: 화면 전체에 크게 띄워 직원에게 보여주기(ShowToStaff)
-export default function PhraseCard({ phrase }: { phrase: Phrase }) {
+type PhraseCardProps = {
+  phrase: Phrase;
+  // 북마크 저장/해제가 성공했을 때 알려준다. (오프라인 표현 보관함에서 해제하면 목록에서 빼려고)
+  onSavedChange?: (saved: boolean) => void;
+};
+
+export default function PhraseCard({ phrase, onSavedChange }: PhraseCardProps) {
   const [saved, setSaved] = useState(phrase.saved ?? false);
   const [speaking, setSpeaking] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -41,6 +47,7 @@ export default function PhraseCard({ phrase }: { phrase: Phrase }) {
     setSaved(next);
     try {
       await (next ? savePhrase(phrase.id) : unsavePhrase(phrase.id));
+      onSavedChange?.(next);
     } catch (e) {
       console.error(e);
       setSaved(!next);

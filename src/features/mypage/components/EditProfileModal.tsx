@@ -7,7 +7,7 @@ import photoIcon from "../../../assets/mypage/photo.svg";
 import closeIcon from "../../../assets/scan/x-black.svg";
 import ErrorToast from "../../../components/ErrorToast";
 import { useAuth } from "../../../contexts/auth";
-import DeleteAccountDialog from "./DeleteAccountDialog";
+import ConfirmDialog from "./ConfirmDialog";
 import ProfileAvatar from "./ProfileAvatar";
 
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
@@ -196,8 +196,11 @@ export default function EditProfileModal({ profile, onClose, onSaved }: EditProf
       </div>
 
       {confirmingDelete && (
-        <DeleteAccountDialog
-          deleting={deleting}
+        <ConfirmDialog
+          title="정말 탈퇴하시겠어요?"
+          message="계정을 삭제하면 즐겨찾기와 스캔한 안내문 기록이 모두 사라지고 되돌릴 수 없어요."
+          confirmLabel="회원 탈퇴"
+          busy={deleting}
           onCancel={() => setConfirmingDelete(false)}
           onConfirm={confirmDelete}
         />

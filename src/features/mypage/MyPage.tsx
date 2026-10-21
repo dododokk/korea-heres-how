@@ -30,7 +30,7 @@ const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 // 마이페이지에는 최대 3개까지만 보여주고, 3개 이상이면 "전체 보기"를 띄운다.
 const PREVIEW_COUNT = 3;
 
-// 프로필 수정 외에 다른 화면으로 넘어가는 버튼들은 아직 동작 없이 모양만 있다.
+// 프로필 수정·전체 보기·오프라인 표현 보관함 외에 다른 화면으로 넘어가는 버튼들은 아직 동작 없이 모양만 있다.
 export default function MyPage() {
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -104,6 +104,7 @@ export default function MyPage() {
       <div className="pt-[min(1rem,16px)]">
         <button
           type="button"
+          onClick={() => navigate("/mypage/phrasebook")}
           className="flex w-full items-center gap-[min(0.875rem,14px)] rounded-[min(0.75rem,12px)] border border-[rgba(43,33,24,0.05)] bg-white px-[min(1.0625rem,17px)] py-[min(0.9375rem,15px)] text-left"
         >
           <span className="flex size-[min(2.75rem,44px)] shrink-0 items-center justify-center rounded-[min(0.75rem,12px)] bg-[rgba(224,122,95,0.1)]">
@@ -131,6 +132,7 @@ export default function MyPage() {
         title="즐겨찾기"
         sub="Favorites"
         count={favorites.length}
+        onViewAll={() => navigate("/mypage/favorites")}
         emptyText="즐겨찾기한 장소가 없습니다."
       >
         {favorites.slice(0, PREVIEW_COUNT).map((place) => (
@@ -143,6 +145,7 @@ export default function MyPage() {
         title="스캔한 안내문"
         sub="Scanned signs"
         count={signs.length}
+        onViewAll={() => navigate("/mypage/scans")}
         emptyText="스캔한 안내문이 없습니다."
       >
         {signs.slice(0, PREVIEW_COUNT).map((sign) => (
@@ -202,12 +205,14 @@ function ListSection({
   sub,
   count,
   emptyText,
+  onViewAll,
   children,
 }: {
   title: string;
   sub: string;
   count: number;
   emptyText: string;
+  onViewAll: () => void;
   children: ReactNode;
 }) {
   return (
@@ -217,6 +222,7 @@ function ListSection({
         {count >= PREVIEW_COUNT && (
           <button
             type="button"
+            onClick={onViewAll}
             className="flex items-center gap-[min(0.125rem,2px)] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium text-[#E07A5F]"
           >
             전체 보기

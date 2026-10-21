@@ -4,7 +4,10 @@ import FindPasswordPage from '../features/auth/FindPasswordPage'
 import LoginPage from '../features/auth/LoginPage'
 import SignupPage from '../features/auth/SignupPage'
 import MapPage from '../features/map/MapPage'
+import FavoritesPage from '../features/mypage/FavoritesPage'
 import MyPage from '../features/mypage/MyPage'
+import PhrasebookPage from '../features/mypage/PhrasebookPage'
+import ScannedSignsPage from '../features/mypage/ScannedSignsPage'
 import ScanPage from '../features/scan/ScanPage'
 import RequireAuth from './RequireAuth'
 
@@ -21,6 +24,9 @@ export default function AppRouter() {
         <Route path="/aichat" element={<AiChatPage />} />
         <Route path="/scan" element={<ScanPage />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage/favorites" element={<FavoritesPage />} />
+        <Route path="/mypage/scans" element={<ScannedSignsPage />} />
+        <Route path="/mypage/phrasebook" element={<PhrasebookPage />} />
       </Route>
 
       <Route path="/" element={<Navigate to="/map" replace />} />
