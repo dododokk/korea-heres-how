@@ -1,9 +1,11 @@
 import { useCallback, useState } from "react";
+import { explainSign, type SignExplanation } from "../../api/scan";
 import aiIcon from "../../assets/all/ai.svg";
 import AiButton from "../../components/AiButton";
 import ErrorToast from "../../components/ErrorToast";
 import PhotoPicker from "./components/PhotoPicker";
 import PhotoPreview from "./components/PhotoPreview";
+import ResultModal from "./components/ResultModal";
 
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 
@@ -18,7 +20,7 @@ const ONLY_ONE_MESSAGE = "이미지 또는 텍스트 중 하나만 입력할 수
 
 // 안내문 해석 화면. 사진 또는 텍스트 중 하나만 입력할 수 있고, 하나라도 있으면 "안내문 해석하기"가 켜진다.
 // 이미 하나를 입력한 상태에서 다른 쪽을 누르면 토스트로 알려준다.
-// 해석 결과 화면은 아직 없어서 버튼은 모양만 있다.
+// "안내문 해석하기"를 누르면 해석 결과를 받아 팝업(ResultModal)으로 띄운다.
 export default function ScanPage() {
   // 나중에 서버에 그대로 올려서(마이페이지 "스캔한 안내문" 사진으로 쓰도록) 원본 File로 들고 있는다.
   const [photo, setPhoto] = useState<File | null>(null);
@@ -29,7 +31,23 @@ export default function ScanPage() {
 
   const hasPhoto = photo !== null;
   const hasText = text !== "";
-  const canSubmit = hasPhoto || text.trim() !== "";
+  const [result, setResult] = useState<SignExplanation | null>(null);
+  const [explaining, setExplaining] = useState(false);
+
+  const canSubmit = (hasPhoto || text.trim() !== "") && !explaining;
+
+  const submit = async () => {
+    if (!canSubmit) return;
+    setExplaining(true);
+    try {
+      setResult(await explainSign(photo ? { photo } : { text: text.trim() }));
+    } catch (e) {
+      console.error(e);
+      setToast("해석하지 못했어요. 잠시 후 다시 시도해 주세요.");
+    } finally {
+      setExplaining(false);
+    }
+  };
 
   const fillExample = (example: string) => {
     if (hasPhoto) showOnlyOneToast();
@@ -107,6 +125,7 @@ export default function ScanPage() {
         </span>
         <button
           type="button"
+          onClick={submit}
           disabled={!canSubmit}
           className="flex h-[min(3.0859375rem,49.375px)] items-center gap-[min(0.5rem,8px)] rounded-full bg-[#2B2118] px-[min(1.25rem,20px)] disabled:cursor-default disabled:opacity-40"
         >
@@ -149,6 +168,8 @@ export default function ScanPage() {
       <div className="fixed right-[min(1rem,16px)] bottom-[calc(min(3.8125rem,61px)+min(1.1875rem,19px)+env(safe-area-inset-bottom))] z-40">
         <AiButton />
       </div>
+
+      {result && <ResultModal result={result} onClose={() => setResult(null)} />}
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import type { FeedbackResult } from "./feedback";
 import { getMockAnswer, sendMockFeedback } from "./mocks/aichat";
 
 // 서버가 내려줄 AI 답변 한 개 (백엔드와 필드 확정 전)
@@ -14,24 +15,8 @@ export type AiAnswer = {
   };
 };
 
-// "어떤 점이 아쉬웠나요?" 선택지
-export const FEEDBACK_REASONS = [
-  "잘못된 정보",
-  "이해하기 어려움",
-  "실제 장소와 다름",
-  "기타",
-] as const;
-export type FeedbackReason = (typeof FEEDBACK_REASONS)[number];
-
-// 답변 피드백. 도움됨이면 helpful: true만, 도움 안 됨이면 이유(1개 이상)와 추가 의견(선택)을 함께 보낸다.
-export type AnswerFeedback =
-  | { answerId: string; helpful: true }
-  | {
-      answerId: string;
-      helpful: false;
-      reasons: FeedbackReason[];
-      comment?: string;
-    };
+// 답변 피드백. 어떤 답변인지(answerId)와 피드백 내용을 함께 보낸다.
+export type AnswerFeedback = { answerId: string } & FeedbackResult;
 
 // [임시] 서버 연결 전까지는 true. 서버가 준비되면 false로 바꾸고 mocks/aichat.ts를 지운다.
 const USE_MOCK = true;

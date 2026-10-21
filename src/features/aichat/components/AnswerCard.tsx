@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { AiAnswer } from "../../../api/aichat";
+import { type AiAnswer, sendFeedback } from "../../../api/aichat";
 import aiOrange from "../../../assets/all/ai-orange.svg";
 import ban from "../../../assets/aichat/ban.svg";
 import ck from "../../../assets/aichat/ck.svg";
@@ -7,7 +7,7 @@ import doubleCk from "../../../assets/aichat/double-ck.svg";
 import look from "../../../assets/aichat/look.svg";
 import translation from "../../../assets/aichat/translation.svg";
 import x from "../../../assets/aichat/x.svg";
-import AnswerFeedback from "./AnswerFeedback";
+import Feedback from "../../../components/Feedback";
 
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 
@@ -81,7 +81,7 @@ export default function AnswerCard({ answer }: { answer: AiAnswer }) {
           </div>
         </div>
 
-        <AnswerFeedback answerId={answer.id} />
+        <Feedback onSend={(result) => sendFeedback({ answerId: answer.id, ...result })} />
       </div>
     </div>
   );

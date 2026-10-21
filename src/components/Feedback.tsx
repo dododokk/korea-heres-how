@@ -2,21 +2,29 @@ import { useState } from "react";
 import {
   FEEDBACK_REASONS,
   type FeedbackReason,
-  sendFeedback,
-} from "../../../api/aichat";
-import bad from "../../../assets/aichat/bad.svg";
-import ck from "../../../assets/aichat/ck.svg";
-import good from "../../../assets/aichat/good.svg";
+  type FeedbackResult,
+} from "../api/feedback";
+import bad from "../assets/aichat/bad.svg";
+import ck from "../assets/aichat/ck.svg";
+import good from "../assets/aichat/good.svg";
+import correct from "../assets/scan/correct.svg";
 
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 
 const COMMENT_MAX = 500;
 
-// idle: 도움이 되었나요? / good: 도움됨 보냄 / form: 도움 안 됨 의견 작성 / bad: 의견 보냄
+// idle: 처음 질문 / good: 도움됨 보냄 / form: 도움 안 됨 의견 작성 / bad: 의견 보냄
 type Step = "idle" | "good" | "form" | "bad";
 
-// 답변 카드 맨 아래 "도움이 되었나요?" 영역
-export default function AnswerFeedback({ answerId }: { answerId: string }) {
+type FeedbackProps = {
+  // 어디에 보낼지는 화면마다 달라서(AI 답변, 안내문 해석 …) 보내는 함수를 쓰는 쪽에서 넘긴다.
+  onSend: (result: FeedbackResult) => Promise<void>;
+  // chat: "도움이 되었나요?" 왼쪽 정렬 / scan: "ⓘ 정확했나요?" 가운데 정렬
+  variant?: "chat" | "scan";
+};
+
+// "도움이 되었나요?" 피드백 영역. 도움 안 됨을 누르면 이유와 의견을 받는다.
+export default function Feedback({ onSend, variant = "chat" }: FeedbackProps) {
   const [step, setStep] = useState<Step>("idle");
   const [reasons, setReasons] = useState<FeedbackReason[]>([]);
   const [comment, setComment] = useState("");
@@ -25,7 +33,7 @@ export default function AnswerFeedback({ answerId }: { answerId: string }) {
   const sendHelpful = async () => {
     setStep("good");
     try {
-      await sendFeedback({ answerId, helpful: true });
+      await onSend({ helpful: true });
     } catch (e) {
       console.error(e);
     }
@@ -53,8 +61,7 @@ export default function AnswerFeedback({ answerId }: { answerId: string }) {
     if (!canSubmit) return;
     setSending(true);
     try {
-      await sendFeedback({
-        answerId,
+      await onSend({
         helpful: false,
         reasons,
         comment: comment.trim() || undefined,
@@ -142,6 +149,19 @@ export default function AnswerFeedback({ answerId }: { answerId: string }) {
     );
   }
 
+  if (variant === "scan") {
+    return (
+      <div className="flex items-center justify-center gap-[min(0.75rem,12px)] pt-[min(1rem,16px)]">
+        <span className="flex items-center gap-[min(0.25rem,4px)] text-[min(0.75rem,12px)] leading-[min(1.125rem,18px)] text-[rgba(43,33,24,0.45)]">
+          <img src={correct} alt="" style={{ width: size(13), height: size(12) }} />
+          정확했나요?
+        </span>
+        <ScanFeedbackButton icon={good} label="도움됨" onClick={sendHelpful} />
+        <ScanFeedbackButton icon={bad} label="도움 안 됨" onClick={() => setStep("form")} />
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center gap-[min(0.75rem,12px)] pt-[min(0.75rem,12px)]">
       <div>
@@ -193,6 +213,28 @@ function FeedbackButton({
         className="opacity-55"
         style={{ width: size(14), height: size(13) }}
       />
+      {label}
+    </button>
+  );
+}
+
+// scan 모양 버튼: 테두리 알약 + 진한 글자
+function ScanFeedbackButton({
+  icon,
+  label,
+  onClick,
+}: {
+  icon: string;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="flex h-[min(2rem,32px)] shrink-0 items-center gap-[min(0.25rem,4px)] rounded-full border border-[rgba(43,33,24,0.1)] px-[min(0.75rem,12px)] text-[min(0.75rem,12px)] leading-[min(1.125rem,18px)] text-[#2B2118]"
+    >
+      <img src={icon} alt="" style={{ width: size(12), height: size(11) }} />
       {label}
     </button>
   );
