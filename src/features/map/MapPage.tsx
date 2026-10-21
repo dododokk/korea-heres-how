@@ -179,6 +179,7 @@ export default function MapPage() {
                   distanceText={formatKm(place)}
                   walkText={formatWalk(place)}
                   onClick={() => selectFromCard(place)}
+                  onGuideClick={() => navigate(`/place/${place.contentid}`)}
                 />
               ))}
             </div>
@@ -201,6 +202,7 @@ export default function MapPage() {
                 place={place}
                 distanceText={formatDistance(place)}
                 onClick={() => selectFromCard(place)}
+                onGuideClick={() => navigate(`/place/${place.contentid}`)}
               />
             ))}
           </div>

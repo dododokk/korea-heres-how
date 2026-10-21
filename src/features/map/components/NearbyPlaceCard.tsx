@@ -6,18 +6,26 @@ const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 
 type NearbyPlaceCardProps = {
   place: Place;
-  distanceText?: string; // "2.1 km · 도보 27분" (내 위치를 모르면 없음)
-  onClick: () => void;
+  distanceText?: string; // "2.1 km · 도보 27분"
+  onClick: () => void; // 카드를 누르면 마커 선택
+  onGuideClick: () => void; // 오른쪽 아래 화살표를 누르면 관광지 상세로
 };
 
 // 지도 바텀시트 중간 단계에서 옆으로 넘겨 보는 장소 카드. 사진은 아직 회색 칸.
-// 오른쪽 아래 화살표(상세 화면)는 아직 동작 없이 모양만 있다.
-export default function NearbyPlaceCard({ place, distanceText, onClick }: NearbyPlaceCardProps) {
+export default function NearbyPlaceCard({ place, distanceText, onClick, onGuideClick }: NearbyPlaceCardProps) {
   return (
-    <button
-      type="button"
+    // 안에 화살표 버튼이 있어서 카드는 button 대신 div에 버튼 역할을 준다.
+    <div
+      role="button"
+      tabIndex={0}
       onClick={onClick}
-      className="flex w-[min(14.25rem,228px)] shrink-0 snap-start flex-col overflow-hidden rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.07)] bg-white text-left font-['Roboto',sans-serif]"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+      className="flex w-[min(14.25rem,228px)] cursor-pointer shrink-0 snap-start flex-col overflow-hidden rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.07)] bg-white text-left font-['Roboto',sans-serif]"
     >
       <div className="relative h-[min(7rem,112px)] w-full bg-[#E2E2E2]">
         {place.imageUrl && <img src={place.imageUrl} alt="" className="size-full object-cover" />}
@@ -42,9 +50,19 @@ export default function NearbyPlaceCard({ place, distanceText, onClick }: Nearby
           <span className="truncate text-[min(0.65625rem,10.5px)] leading-[min(0.984375rem,15.75px)] text-[rgba(43,33,24,0.45)]">
             {distanceText}
           </span>
-          <img src={arrowOrange} alt="" className="shrink-0" style={{ width: size(16), height: size(15) }} />
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onGuideClick();
+            }}
+            aria-label={`${place.title} 가이드 보기`}
+            className="flex shrink-0 items-center justify-center"
+          >
+            <img src={arrowOrange} alt="" style={{ width: size(16), height: size(15) }} />
+          </button>
         </div>
       </div>
-    </button>
+    </div>
   );
 }

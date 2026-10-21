@@ -13,6 +13,8 @@ type PlaceMarkerProps = {
   distanceText?: string;
   selected: boolean;
   onClick: () => void;
+  // 선택됐을 때 위에 말풍선을 띄울지 (관광지 상세의 작은 지도에서는 끈다)
+  showLabel?: boolean;
 };
 
 // 지도 위 장소 마커. 기본은 흰 원 + 주황 핀, 선택되면 더 큰 주황 원 + 흰 핀 + 위에 말풍선.
@@ -22,6 +24,7 @@ export default function PlaceMarker({
   distanceText,
   selected,
   onClick,
+  showLabel = true,
 }: PlaceMarkerProps) {
   return (
     <CustomOverlayMap
@@ -37,7 +40,7 @@ export default function PlaceMarker({
         말풍선은 absolute로 띄워서 상자 크기에 영향을 주지 않게 한다. → 흰색/주황색 원의 중심이 항상 같은 자리.
       */}
       <div className="relative flex size-[min(2.5rem,40px)] items-center justify-center">
-        {selected && (
+        {selected && showLabel && (
           <div className="absolute bottom-[calc(100%+min(0.25rem,4px))] left-1/2 -translate-x-1/2 rounded-[min(0.75rem,12px)] border border-[rgba(43,33,24,0.1)] bg-[#FBF5EE] px-[min(0.8125rem,13px)] py-[min(0.5625rem,9px)] whitespace-nowrap drop-shadow-[0_4px_7px_rgba(43,33,24,0.12)]">
             <p className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(0.8125rem,13px)] font-semibold leading-[min(1.015625rem,16.25px)] text-[#2B2118]">
               {name}

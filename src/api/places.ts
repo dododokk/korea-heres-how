@@ -1,4 +1,6 @@
+import { getMockPlaceDetail } from "./mocks/placeDetail";
 import { getMockNearbyPlaces, getMockPlaces } from "./mocks/places";
+import type { Phrase } from "./phrases";
 
 // 서버가 내려줄 장소 한 개 (TourAPI 기반, 백엔드와 필드 확정 전)
 export type Place = {
@@ -61,5 +63,35 @@ export async function getNearbyPlaces(): Promise<Place[]> {
 
   const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/places/nearby`);
   if (!res.ok) throw new Error(`장소 목록을 불러오지 못했어요 (${res.status})`);
+  return res.json();
+}
+
+// 관광지 상세 화면(/place/:id)에서 쓰는 장소 정보. 목록의 장소 정보에 상세 내용이 더해진다.
+export type PlaceDetail = Place & {
+  favorite: boolean; // 즐겨찾기(북마크) 했는지
+  highlight: string; // 상단 칩 한 줄 (주민이 실제로 사는 곳)
+  description: string; // 사진 아래 한두 줄 소개
+  remember: { text: string; textEn: string }[]; // 이것만 기억하세요 (3개)
+  confusions: { question: string; answer: string }[]; // 여기서 헷갈릴 수 있어요
+  steps: string[]; // 이렇게 하면 돼요
+  cautions: string[]; // 주의하세요
+  phrasesHear: Phrase[]; // 현장 한국어 — 들을 수 있는 말
+  phrasesSay: Phrase[]; // 현장 한국어 — 내가 할 말
+  info: {
+    about: string; // Basic Information 아래 소개
+    location: string;
+    hours: string;
+    closed: string;
+    admission: string;
+    parking: string;
+  };
+};
+
+// 관광지 상세. 서버(안): GET /places/:id — 경로·형식은 백엔드와 협의 필요
+export async function getPlaceDetail(id: string): Promise<PlaceDetail> {
+  if (USE_MOCK) return getMockPlaceDetail(id);
+
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/places/${id}`);
+  if (!res.ok) throw new Error(`장소 정보를 불러오지 못했어요 (${res.status})`);
   return res.json();
 }

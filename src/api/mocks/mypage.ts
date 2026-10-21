@@ -73,3 +73,14 @@ export function getMockFavorites(): Promise<FavoritePlace[]> {
 export function getMockScannedSigns(): Promise<ScannedSign[]> {
   return Promise.resolve(MOCK_SCANNED_SIGNS);
 }
+
+// 즐겨찾기 추가/해제는 아직 마이페이지 목록에 반영하지 않고 콘솔에만 남긴다.
+export function addMockFavorite(placeId: string): Promise<void> {
+  console.info("[mock] 즐겨찾기 추가", placeId);
+  return new Promise((resolve) => setTimeout(resolve, 200));
+}
+
+export function removeMockFavorite(placeId: string): Promise<void> {
+  console.info("[mock] 즐겨찾기 해제", placeId);
+  return new Promise((resolve) => setTimeout(resolve, 200));
+}

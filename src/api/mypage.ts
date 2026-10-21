@@ -1,8 +1,10 @@
 import {
+  addMockFavorite,
   deleteMockAccount,
   getMockFavorites,
   getMockProfile,
   getMockScannedSigns,
+  removeMockFavorite,
   updateMockProfile,
 } from "./mocks/mypage";
 
@@ -82,4 +84,19 @@ export async function deleteAccount(): Promise<void> {
 
   const res = await fetch(`${BASE_URL}/me`, { method: "DELETE" });
   if (!res.ok) throw new Error(`탈퇴하지 못했어요 (${res.status})`);
+}
+
+async function send(method: "PUT" | "DELETE", path: string) {
+  const res = await fetch(`${BASE_URL}${path}`, { method });
+  if (!res.ok) throw new Error(`저장하지 못했어요 (${res.status})`);
+}
+
+// 장소를 즐겨찾기에 추가한다. 서버(안): PUT /me/favorites/:placeId
+export function addFavorite(placeId: string): Promise<void> {
+  return USE_MOCK ? addMockFavorite(placeId) : send("PUT", `/me/favorites/${placeId}`);
+}
+
+// 즐겨찾기에서 뺀다. 서버(안): DELETE /me/favorites/:placeId
+export function removeFavorite(placeId: string): Promise<void> {
+  return USE_MOCK ? removeMockFavorite(placeId) : send("DELETE", `/me/favorites/${placeId}`);
 }

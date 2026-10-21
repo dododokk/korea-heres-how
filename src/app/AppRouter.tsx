@@ -8,6 +8,7 @@ import MapPage from '../features/map/MapPage'
 import FavoritesPage from '../features/mypage/FavoritesPage'
 import MyPage from '../features/mypage/MyPage'
 import PhrasebookPage from '../features/mypage/PhrasebookPage'
+import PlaceDetailPage from '../features/place/PlaceDetailPage'
 import ScannedSignsPage from '../features/mypage/ScannedSignsPage'
 import ScanPage from '../features/scan/ScanPage'
 import RequireAuth from './RequireAuth'
@@ -23,6 +24,7 @@ export default function AppRouter() {
       <Route element={<RequireAuth />}>
         <Route path="/map" element={<MapPage />} />
         <Route path="/list" element={<AroundPage />} />
+        <Route path="/place/:id" element={<PlaceDetailPage />} />
         <Route path="/aichat" element={<AiChatPage />} />
         <Route path="/scan" element={<ScanPage />} />
         <Route path="/mypage" element={<MyPage />} />

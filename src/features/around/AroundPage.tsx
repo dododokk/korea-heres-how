@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { formatKm, formatWalk, getNearbyPlaces, type Place } from "../../api/places";
 import distanceIcon from "../../assets/around/distance.svg";
 import nameIcon from "../../assets/around/name.svg";
@@ -17,8 +18,9 @@ type Sort = "distance" | "name";
 
 // 하단 Nav "주변" 탭 (/list). 지도에서 보는 장소를 목록으로 보여준다.
 // 검색어·분류·영업 중 필터를 함께 적용하고, 가까운 순 또는 이름순으로 정렬한다.
-// 카드를 누르는 동작(상세 화면)은 아직 없다.
+// "여기서는? 가이드"를 누르면 관광지 상세로 간다. 카드 자체를 누르는 동작은 없다.
 export default function AroundPage() {
+  const navigate = useNavigate();
   const [places, setPlaces] = useState<Place[]>([]);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<Filter>("전체");
@@ -116,6 +118,7 @@ export default function AroundPage() {
               imageUrl={place.imageUrl}
               distanceText={formatKm(place)}
               walkText={formatWalk(place)}
+              onGuideClick={() => navigate(`/place/${place.contentid}`)}
             />
           ))}
         </div>
