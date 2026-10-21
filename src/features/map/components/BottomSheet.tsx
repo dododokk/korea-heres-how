@@ -16,16 +16,27 @@ type BottomSheetProps = {
   count?: number;
   // 시트 위쪽 오른편에 띄워서 시트와 같이 움직일 요소 (AI 버튼 등)
   floating?: ReactNode;
+  // 제목 줄 오른쪽에 둘 요소 ("전체 보기" 등)
+  action?: ReactNode;
+  // 최소·중간 단계에서 보여줄 내용 (가로 카드)
   children?: ReactNode;
+  // 최대 단계(맨 위까지 끌어올림)에서 대신 보여줄 내용 (세로 목록). 없으면 children을 그대로 보여준다.
+  expandedContent?: ReactNode;
+  // 이 값이 바뀌면 내용 스크롤을 맨 위로 되돌린다. (선택한 장소가 목록 맨 앞으로 올 때)
+  scrollResetKey?: unknown;
 };
 
 export default function BottomSheet({
   count,
   floating,
+  action,
   children,
+  expandedContent,
+  scrollResetKey,
 }: BottomSheetProps) {
   const sheetRef = useRef<HTMLDivElement>(null);
   const grabRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const drag = useRef<{
     startY: number;
     startHeight: number;
@@ -63,6 +74,10 @@ export default function BottomSheet({
     observer.observe(grab);
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    contentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  }, [scrollResetKey]);
 
   const heights = [size.min, size.mid, size.max];
   const height = dragHeight ?? heights[snap];
@@ -144,24 +159,33 @@ export default function BottomSheet({
         <div className="flex justify-center pt-[min(0.625rem,10px)] pb-[min(0.375rem,6px)]">
           <span className="h-[min(0.25rem,4px)] w-[min(2.5rem,40px)] rounded-full bg-[rgba(43,33,24,0.15)]" />
         </div>
-        <div className="px-[min(1rem,16px)] pb-[min(0.5rem,8px)]">
-          <h2 className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(1rem,16px)] font-semibold leading-[min(1.25rem,20px)] tracking-[-0.025em] text-[#2B2118]">
-            내 주변 장소
-          </h2>
-          <p className="mt-[min(0.125rem,2px)] font-['Roboto',sans-serif] text-[min(0.65625rem,10.5px)] leading-[min(0.8203rem,13.125px)] text-[rgba(43,33,24,0.45)]">
-            Nearby places
-            {count !== undefined && (
-              <>
-                {" · "}
-                <span className="font-medium text-[#E07A5F]">{count}</span>곳
-              </>
-            )}
-          </p>
+        <div className="flex items-center justify-between gap-[min(0.5rem,8px)] px-[min(1rem,16px)] pb-[min(0.5rem,8px)]">
+          <div>
+            <h2 className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(1rem,16px)] font-semibold leading-[min(1.25rem,20px)] tracking-[-0.025em] text-[#2B2118]">
+              내 주변 장소
+            </h2>
+            <p className="mt-[min(0.125rem,2px)] font-['Roboto',sans-serif] text-[min(0.65625rem,10.5px)] leading-[min(0.8203rem,13.125px)] text-[rgba(43,33,24,0.45)]">
+              Nearby places
+              {count !== undefined && (
+                <>
+                  {" · "}
+                  <span className="font-medium text-[#E07A5F]">{count}</span>곳
+                </>
+              )}
+            </p>
+          </div>
+          {/* 손잡이 영역을 끄는 동작과 겹치지 않게, 버튼을 누를 때는 드래그를 시작하지 않는다. */}
+          {action && (
+            <div onPointerDown={(e) => e.stopPropagation()}>{action}</div>
+          )}
         </div>
       </div>
 
-      {/* 카드 목록 등 내용은 나중에 children으로 넣는다. */}
-      <div className="min-h-0 flex-1 overflow-y-auto">{children}</div>
+      <div ref={contentRef} className="min-h-0 flex-1 overflow-y-auto">
+        {snap === 2 && expandedContent !== undefined
+          ? expandedContent
+          : children}
+      </div>
     </div>
   );
 }

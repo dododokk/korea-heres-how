@@ -26,6 +26,8 @@ export function distanceM(a: LatLng, b: LatLng) {
 }
 
 // 거리(m)를 "2.1 km · 도보 27분" 형태로 바꾼다. 도보 시간 = 거리(m) ÷ 80 (분)
+// 거리(m) → "2.1 km · 도보 27분" (도보 분 = 거리 ÷ 80)
+// [임시] 지금은 장소 거리를 더미 고정 값으로 보여줘서 안 쓰지만, 서버 연결 후 내 위치로 계산할 때 쓴다.
 export function formatDistance(m: number) {
   const km = (m / 1000).toFixed(1);
   const walkMin = Math.max(1, Math.round(m / 80));

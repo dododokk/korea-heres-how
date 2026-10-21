@@ -7,6 +7,7 @@ import offline from "../../assets/mypage/offline.svg";
 import pos from "../../assets/mypage/pos.svg";
 import trash from "../../assets/mypage/trash.svg";
 import bookmarkIcon from "../../assets/scan/bookmark.svg";
+import CategoryChips from "../../components/CategoryChips";
 import ErrorToast from "../../components/ErrorToast";
 import PhraseCard from "../../components/PhraseCard";
 import ConfirmDialog from "./components/ConfirmDialog";
@@ -94,29 +95,12 @@ export default function PhrasebookPage() {
           </div>
 
           {/* 분류 칩 */}
-          <div className="-mx-[min(1rem,16px)] flex gap-[min(0.5rem,8px)] overflow-x-auto px-[min(1rem,16px)] pt-[min(0.75rem,12px)] pb-[min(0.25rem,4px)]">
-            {FILTERS.map((item) => {
-              const active = item === filter;
-              return (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setFilter(item)}
-                  aria-pressed={active}
-                  className={`flex h-[min(2.1875rem,35px)] shrink-0 items-center gap-[min(0.375rem,6px)] rounded-full border px-[min(0.875rem,14px)] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium ${
-                    active
-                      ? "border-[#E07A5F] bg-[#E07A5F] text-[#F1E6D2]"
-                      : "border-[rgba(43,33,24,0.1)] bg-white text-[rgba(43,33,24,0.6)]"
-                  }`}
-                >
-                  {item}
-                  <span className={active ? "text-[rgba(241,230,210,0.75)]" : "text-[rgba(43,33,24,0.35)]"}>
-                    {countOf(item)}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+          <CategoryChips
+            className="pt-[min(0.75rem,12px)]"
+            items={FILTERS.map((item) => ({ value: item, count: countOf(item) }))}
+            selected={filter}
+            onSelect={setFilter}
+          />
 
           {/* 표현 목록 */}
           {visible.length === 0 ? (

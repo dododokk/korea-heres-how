@@ -1,7 +1,7 @@
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
 import placeOrange from "../../../assets/map/place-orange.svg";
 import placeWhite from "../../../assets/map/place-white.svg";
-import { formatDistance, type LatLng } from "./useMyLocation";
+import type { LatLng } from "./useMyLocation";
 
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 
@@ -9,8 +9,8 @@ type PlaceMarkerProps = {
   // 서버 좌표는 { lat: Number(mapy), lng: Number(mapx) }로 바꿔서 넘긴다. (mapy가 위도)
   position: LatLng;
   name: string;
-  // 내 위치에서의 거리(m). 있으면 말풍선에 "2.1 km · 도보 27분"으로 보여준다.
-  distanceM?: number;
+  // 말풍선 둘째 줄 "2.1 km · 도보 27분"
+  distanceText?: string;
   selected: boolean;
   onClick: () => void;
 };
@@ -19,7 +19,7 @@ type PlaceMarkerProps = {
 export default function PlaceMarker({
   position,
   name,
-  distanceM,
+  distanceText,
   selected,
   onClick,
 }: PlaceMarkerProps) {
@@ -42,9 +42,9 @@ export default function PlaceMarker({
             <p className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(0.8125rem,13px)] font-semibold leading-[min(1.015625rem,16.25px)] text-[#2B2118]">
               {name}
             </p>
-            {distanceM !== undefined && (
+            {distanceText && (
               <p className="mt-[min(0.125rem,2px)] font-['Roboto',sans-serif] text-[min(0.65625rem,10.5px)] leading-[min(0.984375rem,15.75px)] text-[rgba(43,33,24,0.55)]">
-                {formatDistance(distanceM)}
+                {distanceText}
               </p>
             )}
           </div>
