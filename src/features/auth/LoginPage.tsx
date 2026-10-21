@@ -4,7 +4,7 @@ import { LoginFailedError } from "../../api/auth";
 import { useAuth } from "../../contexts/auth";
 import AuthLayout from "./components/AuthLayout";
 import EmailStep from "./components/EmailStep";
-import ErrorToast from "./components/ErrorToast";
+import ErrorToast from "../../components/ErrorToast";
 import PasswordStep from "./components/PasswordStep";
 
 // 로그인: 같은 /login 주소 안에서 이메일 → 비밀번호 단계로 화면만 바뀐다.

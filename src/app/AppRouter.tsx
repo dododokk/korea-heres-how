@@ -5,6 +5,7 @@ import LoginPage from '../features/auth/LoginPage'
 import SignupPage from '../features/auth/SignupPage'
 import MapPage from '../features/map/MapPage'
 import MyPage from '../features/mypage/MyPage'
+import ScanPage from '../features/scan/ScanPage'
 import RequireAuth from './RequireAuth'
 
 export default function AppRouter() {
@@ -18,6 +19,7 @@ export default function AppRouter() {
       <Route element={<RequireAuth />}>
         <Route path="/map" element={<MapPage />} />
         <Route path="/aichat" element={<AiChatPage />} />
+        <Route path="/scan" element={<ScanPage />} />
         <Route path="/mypage" element={<MyPage />} />
       </Route>
 
