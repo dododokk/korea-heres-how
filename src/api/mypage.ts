@@ -1,10 +1,22 @@
-import { getMockFavorites, getMockProfile, getMockScannedSigns } from "./mocks/mypage";
+import {
+  deleteMockAccount,
+  getMockFavorites,
+  getMockProfile,
+  getMockScannedSigns,
+  updateMockProfile,
+} from "./mocks/mypage";
 
 // 서버가 내려줄 값들 (백엔드와 필드 확정 전)
 export type Profile = {
   name: string;
-  role: string; // 예: Traveler
-  email: string;
+  email: string; // 로그인 아이디라서 프로필 수정에서는 바꿀 수 없다.
+  imageUrl?: string; // 프로필 사진. 없으면 주황 칸에 사람 아이콘
+};
+
+// 프로필 수정에서 보내는 값. 사진은 새로 고른 경우에만 보낸다.
+export type ProfileUpdate = {
+  name: string;
+  photo?: File;
 };
 
 export type FavoritePlace = {
@@ -49,4 +61,25 @@ export function getFavorites(): Promise<FavoritePlace[]> {
 // 서버(안): GET /me/scans
 export function getScannedSigns(): Promise<ScannedSign[]> {
   return USE_MOCK ? getMockScannedSigns() : get("/me/scans");
+}
+
+// 프로필을 수정하고, 바뀐 프로필을 돌려받는다. 서버(안): PATCH /me (multipart: name, photo)
+export async function updateProfile(update: ProfileUpdate): Promise<Profile> {
+  if (USE_MOCK) return updateMockProfile(update);
+
+  const body = new FormData();
+  body.append("name", update.name);
+  if (update.photo) body.append("photo", update.photo);
+
+  const res = await fetch(`${BASE_URL}/me`, { method: "PATCH", body });
+  if (!res.ok) throw new Error(`저장하지 못했어요 (${res.status})`);
+  return res.json();
+}
+
+// 회원 탈퇴. 서버(안): DELETE /me
+export async function deleteAccount(): Promise<void> {
+  if (USE_MOCK) return deleteMockAccount();
+
+  const res = await fetch(`${BASE_URL}/me`, { method: "DELETE" });
+  if (!res.ok) throw new Error(`탈퇴하지 못했어요 (${res.status})`);
 }

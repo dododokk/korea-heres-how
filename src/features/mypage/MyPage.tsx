@@ -17,11 +17,12 @@ import logoutIcon from "../../assets/mypage/logout.svg";
 import mail from "../../assets/mypage/mail.svg";
 import offline from "../../assets/mypage/offline.svg";
 import scan from "../../assets/mypage/scan.svg";
-import user from "../../assets/mypage/user.svg";
 import AiButton from "../../components/AiButton";
 import LanguageSelect from "../../components/LanguageSelect";
 import { useAuth } from "../../contexts/auth";
+import EditProfileModal from "./components/EditProfileModal";
 import PlaceCard from "./components/PlaceCard";
+import ProfileAvatar from "./components/ProfileAvatar";
 import SignCard from "./components/SignCard";
 
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
@@ -29,13 +30,14 @@ const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 // 마이페이지에는 최대 3개까지만 보여주고, 3개 이상이면 "전체 보기"를 띄운다.
 const PREVIEW_COUNT = 3;
 
-// 다른 화면으로 넘어가는 버튼들은 아직 동작 없이 모양만 있다.
+// 프로필 수정 외에 다른 화면으로 넘어가는 버튼들은 아직 동작 없이 모양만 있다.
 export default function MyPage() {
   const navigate = useNavigate();
   const { logout } = useAuth();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [favorites, setFavorites] = useState<FavoritePlace[]>([]);
   const [signs, setSigns] = useState<ScannedSign[]>([]);
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     Promise.all([getProfile(), getFavorites(), getScannedSigns()])
@@ -66,15 +68,10 @@ export default function MyPage() {
       {/* 프로필 */}
       <section className="overflow-hidden rounded-[min(0.75rem,12px)] border border-[rgba(43,33,24,0.05)] bg-white">
         <div className="flex items-center gap-[min(1rem,16px)] p-[min(1rem,16px)]">
-          <span className="flex size-[min(4rem,64px)] shrink-0 items-center justify-center rounded-[min(0.875rem,14px)] bg-[#E07A5F]">
-            <img src={user} alt="" style={{ width: size(16), height: size(21) }} />
-          </span>
+          <ProfileAvatar src={profile?.imageUrl} />
           <div className="min-w-0 flex-1">
             <p className="truncate text-[min(1.125rem,18px)] leading-[min(1.40625rem,22.5px)] font-bold text-[#2B2118]">
               {profile?.name}
-            </p>
-            <p className="truncate text-[min(0.75rem,12px)] leading-[min(1.125rem,18px)] text-[rgba(43,33,24,0.45)]">
-              {profile?.role}
             </p>
             {profile && (
               <p className="flex items-center gap-[min(0.375rem,6px)] pt-[min(0.25rem,4px)]">
@@ -86,7 +83,13 @@ export default function MyPage() {
             )}
           </div>
         </div>
-        <SettingRow icon={edit} title="프로필 수정" sub="Edit profile" bordered>
+        <SettingRow
+          icon={edit}
+          title="프로필 수정"
+          sub="Edit profile"
+          bordered
+          onClick={() => profile && setEditing(true)}
+        >
           <img src={arrowG} alt="" style={{ width: size(19), height: size(18) }} />
         </SettingRow>
       </section>
@@ -163,6 +166,17 @@ export default function MyPage() {
       <p className="pt-[min(1.5rem,24px)] text-center text-[min(0.71875rem,11.5px)] leading-[min(1.168rem,18.69px)] text-[rgba(43,33,24,0.4)]">
         여기서는? · Korea, Here's How — 한국을 찾은 여행자를 위해 정성껏 만들었습니다.
       </p>
+
+      {editing && profile && (
+        <EditProfileModal
+          profile={profile}
+          onClose={() => setEditing(false)}
+          onSaved={(saved) => {
+            setProfile(saved);
+            setEditing(false);
+          }}
+        />
+      )}
 
       {/* 하단 Nav 위 오른쪽에 떠 있는 AI 버튼 */}
       <div className="fixed right-[min(1rem,16px)] bottom-[calc(min(3.8125rem,61px)+min(1.1875rem,19px)+env(safe-area-inset-bottom))] z-40">
