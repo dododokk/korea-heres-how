@@ -18,3 +18,15 @@ export const titleClassName =
 // 제목 아래 영문 부제
 export const subtitleClassName =
   "pt-[min(0.5rem,8px)] font-['Roboto',sans-serif] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium text-[rgba(43,33,24,0.75)]";
+
+// 비밀번호 찾기 단계별 제목 (로그인 제목보다 작다)
+export const stepTitleClassName =
+  "text-[min(1.5rem,24px)] leading-[min(1.875rem,30px)] font-bold tracking-[-0.025em] text-[#2B2118]";
+
+// 비밀번호 찾기 제목 아래 영문 부제
+export const stepSubtitleClassName =
+  "pt-[min(0.25rem,4px)] font-['Roboto',sans-serif] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium text-[rgba(43,33,24,0.75)]";
+
+// 제목 아래 설명 문장
+export const descriptionClassName =
+  "font-['Roboto',sans-serif] text-[min(0.875rem,14px)] leading-[min(1.421875rem,22.75px)] text-[rgba(43,33,24,0.9)]";
