@@ -1,4 +1,4 @@
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, type ReactNode, useEffect, useState } from "react";
 import { InvalidCodeError } from "../../../api/auth";
 import findPwd from "../../../assets/auth/find-pwd.svg";
 import notice from "../../../assets/auth/notice.svg";
@@ -22,14 +22,21 @@ const formatTime = (seconds: number) =>
 
 type VerifyCodeStepProps = {
   email: string;
+  // 제목 아래 안내 문장 (비밀번호 찾기 / 회원가입마다 다르다)
+  description: ReactNode;
   // 인증번호 확인. 틀리면 InvalidCodeError를 던진다.
   onVerify: (code: string) => Promise<void>;
   // 인증번호 다시 보내기. 실패하면 오류를 던진다.
   onResend: () => Promise<void>;
 };
 
-// 비밀번호 찾기 2단계: 이메일로 받은 인증번호 입력
-export default function VerifyCodeStep({ email, onVerify, onResend }: VerifyCodeStepProps) {
+// 비밀번호 찾기 / 회원가입 2단계: 이메일로 받은 인증번호 입력
+export default function VerifyCodeStep({
+  email,
+  description,
+  onVerify,
+  onResend,
+}: VerifyCodeStepProps) {
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -75,11 +82,7 @@ export default function VerifyCodeStep({ email, onVerify, onResend }: VerifyCode
       </div>
       <h1 className={`pt-[min(1.25rem,20px)] ${stepTitleClassName}`}>이메일을 확인해주세요</h1>
       <p className={stepSubtitleClassName}>Verify your email</p>
-      <p className={`pt-[min(0.75rem,12px)] ${descriptionClassName}`}>
-        입력하신 이메일로 인증번호를 보냈어요.
-        <br />
-        본인 확인 후 비밀번호를 다시 설정할 수 있어요.
-      </p>
+      <p className={`pt-[min(0.75rem,12px)] ${descriptionClassName}`}>{description}</p>
 
       <div className="pt-[min(1rem,16px)]">
         <p className="flex h-[min(2.59375rem,41.5px)] items-center justify-center rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.15)] bg-[rgba(255,255,255,0.85)] px-[min(1.0625rem,17px)] font-['Roboto',sans-serif] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] font-medium text-[rgba(43,33,24,0.9)]">

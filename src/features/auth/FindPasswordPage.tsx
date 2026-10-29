@@ -1,12 +1,13 @@
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router";
 import { InvalidCodeError, resetPassword, sendResetCode, verifyResetCode } from "../../api/auth";
+import open from "../../assets/auth/open.svg";
 import ErrorToast from "../../components/ErrorToast";
 import AuthLayout from "./components/AuthLayout";
-import FindPasswordProgress from "./components/FindPasswordProgress";
+import DoneStep from "./components/DoneStep";
+import EmailInputStep from "./components/EmailInputStep";
 import NewPasswordStep from "./components/NewPasswordStep";
-import ResetDoneStep from "./components/ResetDoneStep";
-import ResetEmailStep from "./components/ResetEmailStep";
+import StepProgress from "./components/StepProgress";
 import VerifyCodeStep from "./components/VerifyCodeStep";
 
 type Step = "email" | "code" | "password" | "done";
@@ -44,13 +45,18 @@ export default function FindPasswordPage() {
     <AuthLayout
       top={
         step !== "done" && (
-          <FindPasswordProgress step={STEP_NUMBER[step]} onBack={handleBack} />
+          <StepProgress step={STEP_NUMBER[step]} total={3} onBack={handleBack} />
         )
       }
     >
       {toast && <ErrorToast message={toast} onClose={closeToast} />}
       {step === "email" && (
-        <ResetEmailStep
+        <EmailInputStep
+          title="비밀번호를 다시 설정해볼까요?"
+          subtitle="Reset your password"
+          description="가입할 때 사용한 이메일을 입력해주세요."
+          submitLabel="인증번호 보내기"
+          loginPrompt="비밀번호가 기억나셨나요?"
           initialEmail={email}
           onNext={(value) =>
             request(async () => {
@@ -64,6 +70,13 @@ export default function FindPasswordPage() {
       {step === "code" && (
         <VerifyCodeStep
           email={email}
+          description={
+            <>
+              입력하신 이메일로 인증번호를 보냈어요.
+              <br />
+              본인 확인 후 비밀번호를 다시 설정할 수 있어요.
+            </>
+          }
           onVerify={(value) =>
             request(async () => {
               await verifyResetCode(email, value);
@@ -76,6 +89,11 @@ export default function FindPasswordPage() {
       )}
       {step === "password" && (
         <NewPasswordStep
+          title="새 비밀번호를 설정해주세요"
+          subtitle="Create a new password"
+          passwordLabel="새 비밀번호 · New password"
+          confirmLabel="새 비밀번호 확인 · Confirm password"
+          submitLabel="비밀번호 변경"
           onSubmit={(password) =>
             request(async () => {
               await resetPassword(email, code, password);
@@ -84,7 +102,16 @@ export default function FindPasswordPage() {
           }
         />
       )}
-      {step === "done" && <ResetDoneStep onDone={() => navigate("/login", { replace: true })} />}
+      {step === "done" && (
+        <DoneStep
+          icon={open}
+          title="비밀번호가 변경되었어요"
+          subtitle="Password updated"
+          description="새 비밀번호로 다시 로그인해주세요."
+          buttonLabel="로그인으로 돌아가기"
+          onDone={() => navigate("/login", { replace: true })}
+        />
+      )}
     </AuthLayout>
   );
 }

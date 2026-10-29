@@ -16,14 +16,29 @@ const PASSWORD_PATTERN = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 const PASSWORD_RULE = "영문, 숫자를 포함해 8자 이상 입력해주세요.";
 
 type NewPasswordStepProps = {
-  // 비밀번호 변경. 실패하면 오류를 던진다.
+  title: string;
+  subtitle: string;
+  passwordLabel: string;
+  confirmLabel: string;
+  submitLabel: string;
+  // 다음 단계에서 뒤로 오면 입력했던 비밀번호를 그대로 채운다.
+  initialPassword?: string;
+  // 비밀번호 저장. 실패하면 오류를 던진다.
   onSubmit: (password: string) => Promise<void>;
 };
 
-// 비밀번호 찾기 3단계: 새 비밀번호 입력
-export default function NewPasswordStep({ onSubmit }: NewPasswordStepProps) {
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
+// 비밀번호 찾기 / 회원가입 3단계: 비밀번호 입력 + 확인
+export default function NewPasswordStep({
+  title,
+  subtitle,
+  passwordLabel,
+  confirmLabel,
+  submitLabel,
+  initialPassword = "",
+  onSubmit,
+}: NewPasswordStepProps) {
+  const [password, setPassword] = useState(initialPassword);
+  const [confirm, setConfirm] = useState(initialPassword);
   const [passwordError, setPasswordError] = useState("");
   const [confirmError, setConfirmError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -47,12 +62,12 @@ export default function NewPasswordStep({ onSubmit }: NewPasswordStepProps) {
 
   return (
     <div>
-      <h1 className={stepTitleClassName}>새 비밀번호를 설정해주세요</h1>
-      <p className={stepSubtitleClassName}>Create a new password</p>
+      <h1 className={stepTitleClassName}>{title}</h1>
+      <p className={stepSubtitleClassName}>{subtitle}</p>
 
       <form onSubmit={handleSubmit} noValidate className="pt-[min(1.5rem,24px)]">
         <PasswordField
-          label="새 비밀번호 · New password"
+          label={passwordLabel}
           hint={PASSWORD_RULE}
           error={passwordError}
           value={password}
@@ -63,7 +78,7 @@ export default function NewPasswordStep({ onSubmit }: NewPasswordStepProps) {
         />
         <div className="pt-[min(1rem,16px)]">
           <PasswordField
-            label="새 비밀번호 확인 · Confirm password"
+            label={confirmLabel}
             error={confirmError}
             value={confirm}
             onChange={(value) => {
@@ -74,7 +89,7 @@ export default function NewPasswordStep({ onSubmit }: NewPasswordStepProps) {
         </div>
         <div className="pt-[min(1rem,16px)]">
           <button type="submit" disabled={loading} className={primaryButtonClassName}>
-            비밀번호 변경
+            {submitLabel}
           </button>
         </div>
       </form>

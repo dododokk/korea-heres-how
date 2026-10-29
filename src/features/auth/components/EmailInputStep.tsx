@@ -1,5 +1,6 @@
 import { type FormEvent, useState } from "react";
 import { Link } from "react-router";
+import { EmailTakenError } from "../../../api/auth";
 import AuthField from "./AuthField";
 import {
   descriptionClassName,
@@ -11,15 +12,29 @@ import {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-type ResetEmailStepProps = {
-  // 인증번호 단계에서 뒤로 오면 입력했던 이메일을 그대로 보여준다.
+type EmailInputStepProps = {
+  title: string;
+  subtitle: string;
+  description: string;
+  submitLabel: string;
+  // 맨 아래 "…있으신가요? 로그인" 문구
+  loginPrompt: string;
+  // 다음 단계에서 뒤로 오면 입력했던 이메일을 그대로 보여준다.
   initialEmail: string;
-  // 인증번호 보내기. 실패하면 오류를 던진다.
+  // 인증번호 보내기. 이미 가입된 이메일이면 EmailTakenError, 그 밖의 실패도 오류를 던진다.
   onNext: (email: string) => Promise<void>;
 };
 
-// 비밀번호 찾기 1단계: 가입한 이메일 입력
-export default function ResetEmailStep({ initialEmail, onNext }: ResetEmailStepProps) {
+// 비밀번호 찾기 / 회원가입 1단계: 이메일 입력
+export default function EmailInputStep({
+  title,
+  subtitle,
+  description,
+  submitLabel,
+  loginPrompt,
+  initialEmail,
+  onNext,
+}: EmailInputStepProps) {
   const [email, setEmail] = useState(initialEmail);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,8 +47,9 @@ export default function ResetEmailStep({ initialEmail, onNext }: ResetEmailStepP
     setLoading(true);
     try {
       await onNext(value);
-    } catch {
-      // 실패 안내는 FindPasswordPage가 위쪽 팝업으로 보여준다.
+    } catch (e) {
+      // 그 밖의 실패 안내는 페이지가 위쪽 팝업으로 보여준다.
+      if (e instanceof EmailTakenError) setError("이미 가입된 이메일이에요.");
     } finally {
       setLoading(false);
     }
@@ -41,11 +57,9 @@ export default function ResetEmailStep({ initialEmail, onNext }: ResetEmailStepP
 
   return (
     <div>
-      <h1 className={stepTitleClassName}>비밀번호를 다시 설정해볼까요?</h1>
-      <p className={stepSubtitleClassName}>Reset your password</p>
-      <p className={`pt-[min(0.75rem,12px)] ${descriptionClassName}`}>
-        가입할 때 사용한 이메일을 입력해주세요.
-      </p>
+      <h1 className={stepTitleClassName}>{title}</h1>
+      <p className={stepSubtitleClassName}>{subtitle}</p>
+      <p className={`pt-[min(0.75rem,12px)] ${descriptionClassName}`}>{description}</p>
 
       <form onSubmit={handleSubmit} noValidate className="pt-[min(1.5rem,24px)]">
         <AuthField label="이메일 · Email" error={error}>
@@ -64,13 +78,13 @@ export default function ResetEmailStep({ initialEmail, onNext }: ResetEmailStepP
         </AuthField>
         <div className="pt-[min(1rem,16px)]">
           <button type="submit" disabled={loading} className={primaryButtonClassName}>
-            인증번호 보내기
+            {submitLabel}
           </button>
         </div>
       </form>
 
       <p className="flex justify-center gap-[min(0.5rem,8px)] pt-[min(1.5rem,24px)] font-['Roboto',sans-serif] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)]">
-        <span className="text-[rgba(43,33,24,0.85)]">비밀번호가 기억나셨나요?</span>
+        <span className="text-[rgba(43,33,24,0.85)]">{loginPrompt}</span>
         <Link to="/login" className="font-semibold text-[#2B2118] underline">
           로그인
         </Link>
