@@ -5,7 +5,7 @@ import { primaryButtonClassName, stepSubtitleClassName, stepTitleClassName } fro
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 
 const smallButtonClassName =
-  "flex h-[min(2.046875rem,32.75px)] items-center justify-center rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.15)] bg-white px-[min(0.8125rem,13px)] font-['Roboto',sans-serif] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] text-[#2B2118]";
+  "flex h-[min(2.046875rem,32.75px)] items-center justify-center rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.15)] bg-white px-[min(0.8125rem,13px)] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] text-[#2B2118]";
 
 // 고른 사진 파일과 미리보기 주소
 export type ProfilePhoto = { file: File; url: string };
@@ -80,7 +80,7 @@ export default function ProfileStep({ name, photo, onPhotoChange, onSubmit }: Pr
         </div>
 
         <div className="w-full pt-[min(1.5rem,24px)]">
-          <div className="rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.1)] bg-[rgba(255,255,255,0.75)] px-[min(1.0625rem,17px)] py-[min(0.8125rem,13px)] text-center font-['Roboto',sans-serif]">
+          <div className="rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.1)] bg-[rgba(255,255,255,0.75)] px-[min(1.0625rem,17px)] py-[min(0.8125rem,13px)] text-center">
             <p className="text-[min(0.6875rem,11px)] leading-[min(1.03125rem,16.5px)] text-[rgba(43,33,24,0.5)]">
               이름 · Name
             </p>

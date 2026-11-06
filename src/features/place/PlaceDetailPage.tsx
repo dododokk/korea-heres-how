@@ -67,7 +67,7 @@ export default function PlaceDetailPage() {
 
   if (failed) {
     return (
-      <p className="px-[min(1rem,16px)] py-[min(3rem,48px)] text-center font-['Roboto',sans-serif] text-[min(0.8125rem,13px)] text-[rgba(43,33,24,0.45)]">
+      <p className="px-[min(1rem,16px)] py-[min(3rem,48px)] text-center text-[min(0.8125rem,13px)] text-[rgba(43,33,24,0.45)]">
         장소 정보를 불러오지 못했어요.
       </p>
     );
@@ -75,7 +75,7 @@ export default function PlaceDetailPage() {
   if (!detail) return null;
 
   return (
-    <div className="pb-[min(5rem,80px)] font-['Roboto',sans-serif]">
+    <div className="pb-[min(5rem,80px)]">
       {/* 사진 (아직 회색 칸) */}
       <div className="relative h-[min(14.375rem,230px)] bg-[#E2E2E2]">
         {detail.imageUrl && <img src={detail.imageUrl} alt="" className="size-full object-cover" />}

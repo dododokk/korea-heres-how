@@ -47,10 +47,10 @@ export default function SplashPage({ onFinish }: SplashPageProps) {
           <span className="absolute -top-[min(0.25rem,4px)] left-[min(3.375rem,54px)] size-[min(0.875rem,14px)] rounded-full border-2 border-[#E07A5F] bg-[#A9BBA0]" />
         </div>
 
-        <h1 className="mt-[min(1.25rem,20px)] font-['Noto_Serif_KR',serif] text-[min(2.125rem,34px)] font-bold leading-[min(2.125rem,34px)] tracking-[-0.025em] text-[#F1E6D2]">
+        <h1 className="mt-[min(1.25rem,20px)] text-[min(2.125rem,34px)] font-bold leading-[min(2.125rem,34px)] tracking-[-0.025em] text-[#F1E6D2]">
           여기서는?
         </h1>
-        <p className="mt-[min(0.5rem,8px)] font-['Roboto',sans-serif] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] tracking-[0.16em] text-[rgba(241,230,210,0.75)]">
+        <p className="mt-[min(0.5rem,8px)] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] tracking-[0.16em] text-[rgba(241,230,210,0.75)]">
           Korea, Here's How
         </p>
       </div>

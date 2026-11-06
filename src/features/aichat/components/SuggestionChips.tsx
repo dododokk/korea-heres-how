@@ -15,7 +15,7 @@ type SuggestionChipsProps = {
 export default function SuggestionChips({ onSelect }: SuggestionChipsProps) {
   return (
     <div className="pt-[min(0.25rem,4px)]">
-      <div className="flex items-baseline gap-[min(0.375rem,6px)] pb-[min(0.5rem,8px)] font-['Roboto',sans-serif]">
+      <div className="flex items-baseline gap-[min(0.375rem,6px)] pb-[min(0.5rem,8px)]">
         <span className="text-[min(0.75rem,12px)] leading-[min(1.125rem,18px)] text-[rgba(43,33,24,0.5)]">
           이런 걸 물어보세요
         </span>
@@ -29,7 +29,7 @@ export default function SuggestionChips({ onSelect }: SuggestionChipsProps) {
             key={question}
             type="button"
             onClick={() => onSelect(question)}
-            className="rounded-full border border-[rgba(43,33,24,0.08)] bg-white px-[min(0.9375rem,15px)] py-[min(0.5625rem,9px)] font-['Roboto',sans-serif] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] text-[rgba(43,33,24,0.7)]"
+            className="rounded-full border border-[rgba(43,33,24,0.08)] bg-white px-[min(0.9375rem,15px)] py-[min(0.5625rem,9px)] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] text-[rgba(43,33,24,0.7)]"
           >
             {question}
           </button>

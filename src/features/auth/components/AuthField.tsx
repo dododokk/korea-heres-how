@@ -17,7 +17,7 @@ type AuthFieldProps = {
 // "이메일 · Email" 같은 라벨 + 입력칸 + 오류 문구 묶음
 export default function AuthField({ label, error, hint, aside, children }: AuthFieldProps) {
   return (
-    <label className="block font-['Roboto',sans-serif]">
+    <label className="block">
       <span className="flex items-center justify-between">
         <span className="text-[min(0.75rem,12px)] leading-[min(1.125rem,18px)] font-medium text-[rgba(43,33,24,0.85)]">
           {label}

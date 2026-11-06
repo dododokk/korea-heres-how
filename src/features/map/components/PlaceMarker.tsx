@@ -42,11 +42,11 @@ export default function PlaceMarker({
       <div className="relative flex size-[min(2.5rem,40px)] items-center justify-center">
         {selected && showLabel && (
           <div className="absolute bottom-[calc(100%+min(0.25rem,4px))] left-1/2 -translate-x-1/2 rounded-[min(0.75rem,12px)] border border-[rgba(43,33,24,0.1)] bg-[#FBF5EE] px-[min(0.8125rem,13px)] py-[min(0.5625rem,9px)] whitespace-nowrap drop-shadow-[0_4px_7px_rgba(43,33,24,0.12)]">
-            <p className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(0.8125rem,13px)] font-semibold leading-[min(1.015625rem,16.25px)] text-[#2B2118]">
+            <p className="text-[min(0.8125rem,13px)] font-semibold leading-[min(1.015625rem,16.25px)] text-[#2B2118]">
               {name}
             </p>
             {distanceText && (
-              <p className="mt-[min(0.125rem,2px)] font-['Roboto',sans-serif] text-[min(0.65625rem,10.5px)] leading-[min(0.984375rem,15.75px)] text-[rgba(43,33,24,0.55)]">
+              <p className="mt-[min(0.125rem,2px)] text-[min(0.65625rem,10.5px)] leading-[min(0.984375rem,15.75px)] text-[rgba(43,33,24,0.55)]">
                 {distanceText}
               </p>
             )}

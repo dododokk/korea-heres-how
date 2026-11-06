@@ -86,7 +86,7 @@ export default function PhraseCard({ phrase, onSavedChange }: PhraseCardProps) {
   };
 
   return (
-    <div className="rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.1)] bg-white p-[min(0.75rem,12px)] font-['Roboto',sans-serif]">
+    <div className="rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.1)] bg-white p-[min(0.75rem,12px)]">
       <div className="flex items-start justify-between gap-[min(0.5rem,8px)]">
         <div className="min-w-0 flex-1">
           <p className="text-[min(0.9375rem,15px)] leading-[min(1.2890625rem,20.625px)] font-medium text-[#2B2118]">

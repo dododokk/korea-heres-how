@@ -51,7 +51,7 @@ export default function PasswordStep({
       <button
         type="button"
         onClick={onBack}
-        className="flex items-center gap-[min(0.25rem,4px)] font-['Roboto',sans-serif] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium text-[rgba(43,33,24,0.8)]"
+        className="flex items-center gap-[min(0.25rem,4px)] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium text-[rgba(43,33,24,0.8)]"
       >
         <img src={back} alt="" style={{ width: size(16), height: size(15) }} />
         이메일 다시 입력
@@ -65,7 +65,7 @@ export default function PasswordStep({
       <div className="pt-[min(1rem,16px)]">
         <span className="inline-flex h-[min(2.1875rem,35px)] max-w-full items-center gap-[min(0.5rem,8px)] rounded-full border border-[rgba(43,33,24,0.15)] bg-white px-[min(0.9375rem,15px)]">
           <img src={id} alt="" style={{ width: size(15), height: size(14) }} />
-          <span className="truncate font-['Roboto',sans-serif] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] font-medium text-[rgba(43,33,24,0.9)]">
+          <span className="truncate text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] font-medium text-[rgba(43,33,24,0.9)]">
             {email}
           </span>
         </span>
@@ -119,7 +119,7 @@ export default function PasswordStep({
       <div className="flex justify-center pt-[min(1rem,16px)]">
         <Link
           to="/find-password"
-          className="font-['Roboto',sans-serif] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium text-[rgba(43,33,24,0.8)] underline"
+          className="text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium text-[rgba(43,33,24,0.8)] underline"
         >
           비밀번호를 잊으셨나요?
         </Link>

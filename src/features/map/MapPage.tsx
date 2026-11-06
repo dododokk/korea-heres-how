@@ -153,7 +153,7 @@ export default function MapPage() {
             <button
               type="button"
               onClick={() => navigate("/list")}
-              className="flex items-center gap-[min(0.25rem,4px)] font-['Roboto',sans-serif] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] text-[#E07A5F]"
+              className="flex items-center gap-[min(0.25rem,4px)] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] text-[#E07A5F]"
             >
               전체 보기
               <img
@@ -206,7 +206,7 @@ export default function MapPage() {
               />
             ))}
           </div>
-          <p className="px-[min(1rem,16px)] pt-[min(0.5rem,8px)] text-center font-['Roboto',sans-serif] text-[min(0.6875rem,11px)] leading-[min(0.9453rem,15.125px)] text-[rgba(43,33,24,0.45)]">
+          <p className="px-[min(1rem,16px)] pt-[min(0.5rem,8px)] text-center text-[min(0.6875rem,11px)] leading-[min(0.9453rem,15.125px)] text-[rgba(43,33,24,0.45)]">
             카드를 누르면{" "}
             <span className="font-medium text-[rgba(43,33,24,0.7)]">
               “여기서 어떻게 행동하는지”

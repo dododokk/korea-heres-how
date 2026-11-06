@@ -85,7 +85,7 @@ export default function VerifyCodeStep({
       <p className={`pt-[min(0.75rem,12px)] ${descriptionClassName}`}>{description}</p>
 
       <div className="pt-[min(1rem,16px)]">
-        <p className="flex h-[min(2.59375rem,41.5px)] items-center justify-center rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.15)] bg-[rgba(255,255,255,0.85)] px-[min(1.0625rem,17px)] font-['Roboto',sans-serif] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] font-medium text-[rgba(43,33,24,0.9)]">
+        <p className="flex h-[min(2.59375rem,41.5px)] items-center justify-center rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.15)] bg-[rgba(255,255,255,0.85)] px-[min(1.0625rem,17px)] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] font-medium text-[rgba(43,33,24,0.9)]">
           <span className="truncate">{email}</span>
         </p>
       </div>
@@ -140,7 +140,7 @@ export default function VerifyCodeStep({
           <button
             type="button"
             onClick={handleResend}
-            className="font-['Roboto',sans-serif] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium text-[rgba(43,33,24,0.75)] underline"
+            className="text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium text-[rgba(43,33,24,0.75)] underline"
           >
             인증번호 다시 보내기
           </button>

@@ -161,10 +161,10 @@ export default function BottomSheet({
         </div>
         <div className="flex items-center justify-between gap-[min(0.5rem,8px)] px-[min(1rem,16px)] pb-[min(0.5rem,8px)]">
           <div>
-            <h2 className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(1rem,16px)] font-semibold leading-[min(1.25rem,20px)] tracking-[-0.025em] text-[#2B2118]">
+            <h2 className="text-[min(1rem,16px)] font-semibold leading-[min(1.25rem,20px)] tracking-[-0.025em] text-[#2B2118]">
               내 주변 장소
             </h2>
-            <p className="mt-[min(0.125rem,2px)] font-['Roboto',sans-serif] text-[min(0.65625rem,10.5px)] leading-[min(0.8203rem,13.125px)] text-[rgba(43,33,24,0.45)]">
+            <p className="mt-[min(0.125rem,2px)] text-[min(0.65625rem,10.5px)] leading-[min(0.8203rem,13.125px)] text-[rgba(43,33,24,0.45)]">
               Nearby places
               {count !== undefined && (
                 <>

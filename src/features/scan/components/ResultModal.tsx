@@ -29,7 +29,7 @@ export default function ResultModal({ result, onClose }: ResultModalProps) {
       aria-modal="true"
       aria-label="안내문 해석 결과"
       onClick={onClose}
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(43,33,24,0.5)] p-[min(1rem,16px)] font-['Roboto',sans-serif]"
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(43,33,24,0.5)] p-[min(1rem,16px)]"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -52,7 +52,7 @@ export default function ResultModal({ result, onClose }: ResultModalProps) {
                 </button>
               </div>
               <div className="mt-[min(0.875rem,14px)] border-l-2 border-[rgba(224,122,95,0.35)] pl-[min(0.875rem,14px)]">
-                <p className="font-['Fraunces',serif] text-[min(1.25rem,20px)] leading-[min(1.875rem,30px)] text-[#2B2118]">
+                <p className="text-[min(1.25rem,20px)] leading-[min(1.875rem,30px)] text-[#2B2118]">
                   {result.title}
                 </p>
                 <p className="pt-[min(0.25rem,4px)] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] text-[rgba(43,33,24,0.5)]">
@@ -112,7 +112,7 @@ export default function ResultModal({ result, onClose }: ResultModalProps) {
 }
 
 const TITLE_CLASS =
-  "font-['Fraunces',serif] text-[min(1.0625rem,17px)] leading-[min(1.328125rem,21.25px)] font-bold tracking-[-0.025em] text-[#2B2118]";
+  "text-[min(1.0625rem,17px)] leading-[min(1.328125rem,21.25px)] font-bold tracking-[-0.025em] text-[#2B2118]";
 
 function Section({ className = "", children }: { className?: string; children: ReactNode }) {
   return (

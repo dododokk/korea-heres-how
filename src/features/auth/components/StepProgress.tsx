@@ -11,7 +11,7 @@ type StepProgressProps = {
 // 비밀번호 찾기 / 회원가입 맨 위 "뒤로 · Step n of N · 진행 바"
 export default function StepProgress({ step, total, onBack }: StepProgressProps) {
   return (
-    <div className="font-['Roboto',sans-serif]">
+    <div className="">
       <div className="flex h-[min(1.40625rem,22.5px)] items-center justify-between">
         <button
           type="button"

@@ -18,7 +18,7 @@ export default function ConfirmDialog({ title, message, confirmLabel, busy, onCa
       role="alertdialog"
       aria-modal="true"
       aria-labelledby="confirm-dialog-title"
-      className="fixed inset-0 z-[70] flex items-center justify-center bg-[rgba(43,33,24,0.45)] p-[min(1rem,16px)] font-['Roboto',sans-serif] backdrop-blur-[2px]"
+      className="fixed inset-0 z-[70] flex items-center justify-center bg-[rgba(43,33,24,0.45)] p-[min(1rem,16px)] backdrop-blur-[2px]"
     >
       <div className="w-full max-w-[448px] overflow-hidden rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.1)] bg-white">
         <div className="px-[min(1.25rem,20px)] pt-[min(1.25rem,20px)]">

@@ -20,7 +20,7 @@ export default function CategoryChips<T extends string>({ items, selected, onSel
             type="button"
             onClick={() => onSelect(value)}
             aria-pressed={active}
-            className={`flex h-[min(2.1875rem,35px)] shrink-0 items-center gap-[min(0.375rem,6px)] rounded-full border px-[min(0.875rem,14px)] font-['Roboto',sans-serif] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium ${
+            className={`flex h-[min(2.1875rem,35px)] shrink-0 items-center gap-[min(0.375rem,6px)] rounded-full border px-[min(0.875rem,14px)] text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] font-medium ${
               active
                 ? "border-[#E07A5F] bg-[#E07A5F] text-[#F1E6D2]"
                 : "border-[rgba(43,33,24,0.1)] bg-white text-[rgba(43,33,24,0.6)]"

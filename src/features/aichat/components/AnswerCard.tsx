@@ -17,7 +17,7 @@ type Icon = { src: string; w: number; h: number };
 export default function AnswerCard({ answer }: { answer: AiAnswer }) {
   return (
     <div className="flex">
-      <div className="max-w-[95%] rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.07)] bg-white p-[min(1.0625rem,17px)] font-['Roboto',sans-serif]">
+      <div className="max-w-[95%] rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.07)] bg-white p-[min(1.0625rem,17px)]">
         <div className="flex items-start gap-[min(0.75rem,12px)]">
           <span className="flex size-[min(2.25rem,36px)] shrink-0 items-center justify-center rounded-full bg-[#F1E6D2]">
             <img src={aiOrange} alt="" style={{ width: size(15), height: size(14) }} />
@@ -69,7 +69,7 @@ export default function AnswerCard({ answer }: { answer: AiAnswer }) {
               labelClassName="text-[rgba(43,33,24,0.45)]"
               sub="Useful Korean phrase"
             />
-            <p className="pt-[min(0.375rem,6px)] font-['Fraunces','Noto_Serif_KR',serif] text-[min(1rem,16px)] leading-[min(1.5rem,24px)] text-[#2B2118]">
+            <p className="pt-[min(0.375rem,6px)] text-[min(1rem,16px)] leading-[min(1.5rem,24px)] text-[#2B2118]">
               {answer.phrase.korean}
             </p>
             <p className="text-[min(0.78125rem,12.5px)] leading-[min(1.171875rem,18.75px)] text-[rgba(43,33,24,0.7)]">

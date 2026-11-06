@@ -16,7 +16,7 @@ export default function LanguageStep({ onNext }: { onNext: () => void }) {
   const [selected, setSelected] = useState<LanguageId>("en");
 
   return (
-    <div className="rounded-[min(1.125rem,18px)] border border-[rgba(255,255,255,0.7)] bg-[rgba(255,255,255,0.95)] p-[min(1.3125rem,21px)] text-center font-['Roboto',sans-serif]">
+    <div className="rounded-[min(1.125rem,18px)] border border-[rgba(255,255,255,0.7)] bg-[rgba(255,255,255,0.95)] p-[min(1.3125rem,21px)] text-center">
       <h1 className="text-[min(1.4375rem,23px)] leading-[min(1.796875rem,28.75px)] font-bold tracking-[-0.025em] text-[#2B2118]">
         어떤 언어로 안내해드릴까요?
       </h1>

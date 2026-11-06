@@ -38,7 +38,7 @@ export default function LanguageSelect({ showGlobe = false, buttonClassName }: L
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className={`flex items-center gap-[min(0.375rem,6px)] rounded-full border border-[rgba(43,33,24,0.1)] px-[min(0.8125rem,13px)] font-['Roboto',sans-serif] text-[#2B2118] ${buttonClassName}`}
+        className={`flex items-center gap-[min(0.375rem,6px)] rounded-full border border-[rgba(43,33,24,0.1)] px-[min(0.8125rem,13px)] text-[#2B2118] ${buttonClassName}`}
       >
         {showGlobe && <img src={globe} alt="" style={{ width: size(13), height: size(12) }} />}
         {lang}
@@ -63,7 +63,7 @@ export default function LanguageSelect({ showGlobe = false, buttonClassName }: L
                     setLang(item);
                     setOpen(false);
                   }}
-                  className={`flex h-[min(2.21875rem,35.5px)] w-full items-center rounded-[min(0.75rem,12px)] px-[min(0.75rem,12px)] font-['Roboto',sans-serif] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] ${
+                  className={`flex h-[min(2.21875rem,35.5px)] w-full items-center rounded-[min(0.75rem,12px)] px-[min(0.75rem,12px)] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] ${
                     selected ? "bg-[#F1E6D2] text-[#2B2118]" : "text-[rgba(43,33,24,0.7)]"
                   }`}
                 >

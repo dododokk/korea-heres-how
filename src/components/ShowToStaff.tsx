@@ -63,7 +63,7 @@ export default function ShowToStaff({ phrase, onClose }: ShowToStaffProps) {
       aria-modal="true"
       aria-label="직원에게 보여주기"
       onClick={close}
-      className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-[rgba(43,33,24,0.92)] px-[min(1.5rem,24px)] text-center font-['Roboto',sans-serif]"
+      className="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-[rgba(43,33,24,0.92)] px-[min(1.5rem,24px)] text-center"
     >
       <p className="text-[min(0.6875rem,11px)] leading-[min(1.03125rem,16.5px)] tracking-[0.24em] text-[rgba(241,230,210,0.6)]">
         Show this to staff

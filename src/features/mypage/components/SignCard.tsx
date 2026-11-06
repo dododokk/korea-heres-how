@@ -14,7 +14,7 @@ export default function SignCard({ sign }: { sign: ScannedSign }) {
   return (
     <button
       type="button"
-      className="flex w-full items-center gap-[min(0.75rem,12px)] rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.05)] bg-white px-[min(0.8125rem,13px)] py-[min(0.6875rem,11px)] text-left font-['Roboto',sans-serif]"
+      className="flex w-full items-center gap-[min(0.75rem,12px)] rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.05)] bg-white px-[min(0.8125rem,13px)] py-[min(0.6875rem,11px)] text-left"
     >
       <Thumbnail src={sign.imageUrl} />
       <div className="min-w-0 flex-1">

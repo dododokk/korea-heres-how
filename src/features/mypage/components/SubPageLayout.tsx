@@ -18,7 +18,7 @@ export default function SubPageLayout({ icon, title, sub, children }: SubPageLay
   const navigate = useNavigate();
 
   return (
-    <div className="px-[min(1rem,16px)] pt-[min(1.5rem,24px)] pb-[min(5rem,80px)] font-['Roboto',sans-serif]">
+    <div className="px-[min(1rem,16px)] pt-[min(1.5rem,24px)] pb-[min(5rem,80px)]">
       <header className="flex items-center gap-[min(0.75rem,12px)]">
         <button
           type="button"

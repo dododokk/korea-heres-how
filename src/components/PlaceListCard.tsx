@@ -52,7 +52,7 @@ export default function PlaceListCard({
           onClick();
         }
       }}
-      className={`flex w-full items-start gap-[min(0.875rem,14px)] rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.07)] bg-white p-[min(0.75rem,12px)] text-left font-['Roboto',sans-serif] ${onClick ? "cursor-pointer" : ""}`}
+      className={`flex w-full items-start gap-[min(0.875rem,14px)] rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.07)] bg-white p-[min(0.75rem,12px)] text-left ${onClick ? "cursor-pointer" : ""}`}
     >
       <div className="relative h-[min(8.5rem,136px)] w-[min(6.75rem,108px)] shrink-0 overflow-hidden rounded-[min(0.75rem,12px)] bg-[#E2E2E2]">
         {imageUrl && <img src={imageUrl} alt="" className="size-full object-cover" />}

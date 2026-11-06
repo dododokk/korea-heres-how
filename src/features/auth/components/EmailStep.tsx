@@ -37,7 +37,7 @@ export default function EmailStep({ initialEmail, onNext }: EmailStepProps) {
     <div>
       <h1 className={titleClassName}>다시 만나서 반가워요</h1>
       <p className={subtitleClassName}>Welcome back</p>
-      <p className="pt-[min(0.75rem,12px)] font-['Roboto',sans-serif] text-[min(0.875rem,14px)] leading-[min(1.421875rem,22.75px)] text-[rgba(43,33,24,0.9)]">
+      <p className="pt-[min(0.75rem,12px)] text-[min(0.875rem,14px)] leading-[min(1.421875rem,22.75px)] text-[rgba(43,33,24,0.9)]">
         이메일을 입력하면 다음 단계에서
         <br />
         비밀번호를 입력할 수 있어요.
@@ -67,7 +67,7 @@ export default function EmailStep({ initialEmail, onNext }: EmailStepProps) {
 
       <div className="flex items-center gap-[min(0.75rem,12px)] py-[min(1.25rem,20px)]">
         <span className="h-px flex-1 bg-[rgba(43,33,24,0.1)]" />
-        <span className="font-['Roboto',sans-serif] text-[min(0.6875rem,11px)] leading-[min(1.03125rem,16.5px)] text-[rgba(43,33,24,0.7)]">
+        <span className="text-[min(0.6875rem,11px)] leading-[min(1.03125rem,16.5px)] text-[rgba(43,33,24,0.7)]">
           또는
         </span>
         <span className="h-px flex-1 bg-[rgba(43,33,24,0.1)]" />
@@ -116,7 +116,7 @@ function SocialButton({
   return (
     <button
       type="button"
-      className={`relative flex w-full flex-col items-center justify-center rounded-[min(0.75rem,12px)] font-['Roboto',sans-serif] font-medium ${className}`}
+      className={`relative flex w-full flex-col items-center justify-center rounded-[min(0.75rem,12px)] font-medium ${className}`}
     >
       <span className="absolute top-1/2 left-[min(1rem,16px)] flex size-[min(1.25rem,20px)] -translate-y-1/2 items-center justify-center">
         <img src={icon} alt="" style={{ width: size(19), height: size(18) }} />

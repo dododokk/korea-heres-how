@@ -55,7 +55,7 @@ export default function MyPage() {
   };
 
   return (
-    <div className="px-[min(1rem,16px)] pt-[min(1.5rem,24px)] pb-[min(5rem,80px)] font-['Roboto',sans-serif]">
+    <div className="px-[min(1rem,16px)] pt-[min(1.5rem,24px)] pb-[min(5rem,80px)]">
       <header className="pb-[min(1.25rem,20px)]">
         <h1 className="text-[min(1.625rem,26px)] leading-[min(2.03rem,32.5px)] font-bold tracking-[-0.025em] text-[#2B2118]">
           마이페이지
@@ -248,7 +248,7 @@ function StatCard({ icon, count, label, sub }: { icon: string; count: number; la
       className="flex flex-col items-start rounded-[min(0.5rem,8px)] border border-[rgba(43,33,24,0.05)] bg-white px-[min(0.9375rem,15px)] py-[min(0.8125rem,13px)] text-left"
     >
       <img src={icon} alt="" style={{ width: size(17), height: size(16) }} />
-      <span className="pt-[min(0.125rem,2px)] font-['Fraunces',serif] text-[min(1.25rem,20px)] leading-[min(1.5625rem,25px)] text-[#2B2118]">
+      <span className="pt-[min(0.125rem,2px)] text-[min(1.25rem,20px)] leading-[min(1.5625rem,25px)] text-[#2B2118]">
         {count}
       </span>
       <span className="text-[min(0.6875rem,11px)] leading-[min(1.03125rem,16.5px)] font-medium text-[rgba(43,33,24,0.65)]">

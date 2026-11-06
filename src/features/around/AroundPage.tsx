@@ -12,7 +12,7 @@ import PlaceListCard from "../../components/PlaceListCard";
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 
 // 분류 칩: 지도 화면 카테고리와 같다.
-const FILTERS = ["전체", "관광지", "음식점", "시장", "카페"] as const;
+const FILTERS = ["전체", "관광지", "문화시설", "음식점", "시장", "카페"] as const;
 type Filter = (typeof FILTERS)[number];
 type Sort = "distance" | "name";
 
@@ -49,7 +49,7 @@ export default function AroundPage() {
     .sort((a, b) => (sort === "distance" ? a.distanceM - b.distanceM : a.title.localeCompare(b.title, "ko")));
 
   return (
-    <div className="px-[min(1rem,16px)] pt-[min(1.5rem,24px)] pb-[min(5rem,80px)] font-['Roboto',sans-serif]">
+    <div className="px-[min(1rem,16px)] pt-[min(1.5rem,24px)] pb-[min(5rem,80px)]">
       <header className="pb-[min(1rem,16px)]">
         <h1 className="text-[min(1.625rem,26px)] leading-[min(2.03rem,32.5px)] font-bold tracking-[-0.025em] text-[#2B2118]">
           주변 장소

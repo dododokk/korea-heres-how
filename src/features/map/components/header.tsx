@@ -4,7 +4,7 @@ import logo from "../../../assets/map/logo.svg";
 
 export type Language = "EN" | "KOR";
 
-const CATEGORIES = ["전체", "관광지", "음식점", "시장", "카페"] as const;
+const CATEGORIES = ["전체", "관광지", "문화시설", "음식점", "시장", "카페"] as const;
 export type Category = (typeof CATEGORIES)[number];
 
 type HeaderProps = {
@@ -45,10 +45,10 @@ export default function Header({
             <span className="absolute -top-[min(0.125rem,2px)] left-[min(1.75rem,28px)] size-[min(0.625rem,10px)] rounded-full border-2 border-[#FBF5EE] bg-[#A9BBA0]" />
           </div>
           <div className="flex flex-col">
-            <h1 className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(1rem,16px)] font-semibold leading-[min(1.25rem,20px)] tracking-[-0.025em] text-[#2B2118]">
+            <h1 className="text-[min(1rem,16px)] font-semibold leading-[min(1.25rem,20px)] tracking-[-0.025em] text-[#2B2118]">
               여기서는?
             </h1>
-            <p className="font-['Roboto',sans-serif] text-[min(0.5625rem,9px)] leading-[min(0.703rem,11.25px)] tracking-[0.14em] text-[rgba(43,33,24,0.55)]">
+            <p className="text-[min(0.5625rem,9px)] leading-[min(0.703rem,11.25px)] tracking-[0.14em] text-[rgba(43,33,24,0.55)]">
               Korea, Here's How
             </p>
           </div>
@@ -58,7 +58,7 @@ export default function Header({
           type="button"
           onClick={toggleLanguage}
           aria-label={language === "EN" ? "한국어로 변경" : "Switch to English"}
-          className="flex h-[min(2rem,32px)] items-center gap-[min(0.375rem,6px)] rounded-full border border-[rgba(43,33,24,0.15)] bg-[rgba(43,33,24,0.05)] px-[min(0.8125rem,13px)] font-['Roboto',sans-serif] text-[min(0.75rem,12px)] font-medium leading-[min(1.125rem,18px)] text-[rgba(43,33,24,0.7)]"
+          className="flex h-[min(2rem,32px)] items-center gap-[min(0.375rem,6px)] rounded-full border border-[rgba(43,33,24,0.15)] bg-[rgba(43,33,24,0.05)] px-[min(0.8125rem,13px)] text-[min(0.75rem,12px)] font-medium leading-[min(1.125rem,18px)] text-[rgba(43,33,24,0.7)]"
         >
           <img
             src={languageIcon}
@@ -78,7 +78,7 @@ export default function Header({
               type="button"
               onClick={() => selectCategory(item)}
               aria-pressed={isActive}
-              className={`relative shrink-0 pb-[min(0.625rem,10px)] font-['Roboto',sans-serif] text-[min(0.84375rem,13.5px)] leading-[min(1.265625rem,20.25px)] ${
+              className={`relative shrink-0 pb-[min(0.625rem,10px)] text-[min(0.84375rem,13.5px)] leading-[min(1.265625rem,20.25px)] ${
                 isActive
                   ? "font-semibold text-[#2B2118]"
                   : "font-normal text-[rgba(43,33,24,0.55)]"

@@ -16,7 +16,7 @@ import SubPageLayout from "./components/SubPageLayout";
 const size = (px: number) => `min(${px / 16}rem, ${px}px)`;
 
 // 분류 칩: 지도 화면 카테고리 + 분류가 없는 표현을 모으는 "기타"
-const FILTERS: ("전체" | PhraseCategory)[] = ["전체", "관광지", "음식점", "시장", "카페", "기타"];
+const FILTERS: ("전체" | PhraseCategory)[] = ["전체", "관광지", "문화시설", "음식점", "시장", "카페", "기타"];
 
 const categoryOf = (phrase: SavedPhrase): PhraseCategory => phrase.category ?? "기타";
 

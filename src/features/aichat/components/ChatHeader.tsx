@@ -28,10 +28,10 @@ export default function ChatHeader() {
           <img src={aiIcon} alt="" style={{ width: size(19), height: size(18) }} />
         </span>
         <div>
-          <h1 className="font-['Fraunces','Noto_Serif_KR',serif] text-[min(0.96875rem,15.5px)] font-semibold leading-[min(1.2109rem,19.375px)] text-[#2B2118]">
+          <h1 className="text-[min(0.96875rem,15.5px)] font-semibold leading-[min(1.2109rem,19.375px)] text-[#2B2118]">
             AI 여행 도우미
           </h1>
-          <p className="font-['Roboto',sans-serif] text-[min(0.625rem,10px)] leading-[min(0.78125rem,12.5px)] text-[rgba(43,33,24,0.45)]">
+          <p className="text-[min(0.625rem,10px)] leading-[min(0.78125rem,12.5px)] text-[rgba(43,33,24,0.45)]">
             AI travel guide
           </p>
         </div>

@@ -97,7 +97,7 @@ export default function EditProfileModal({ profile, onClose, onSaved }: EditProf
       role="dialog"
       aria-modal="true"
       aria-labelledby="edit-profile-title"
-      className="fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(43,33,24,0.45)] p-[min(1rem,16px)] font-['Roboto',sans-serif] backdrop-blur-[2px]"
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(43,33,24,0.45)] p-[min(1rem,16px)] backdrop-blur-[2px]"
     >
       {toast && <ErrorToast message={toast} onClose={closeToast} />}
 

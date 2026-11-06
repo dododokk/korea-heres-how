@@ -29,7 +29,7 @@ export default function DoneStep({
       <h1 className="pt-[min(1.25rem,20px)] text-[min(1.625rem,26px)] leading-[min(2.03125rem,32.5px)] font-bold tracking-[-0.025em] text-[#2B2118]">
         {title}
       </h1>
-      <p className="pt-[min(0.25rem,4px)] font-['Roboto',sans-serif] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] font-medium text-[rgba(43,33,24,0.75)]">
+      <p className="pt-[min(0.25rem,4px)] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] font-medium text-[rgba(43,33,24,0.75)]">
         {subtitle}
       </p>
       <p className={`pt-[min(1rem,16px)] ${descriptionClassName}`}>{description}</p>

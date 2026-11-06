@@ -29,7 +29,7 @@ export function deleteMockAccount(): Promise<void> {
 }
 
 const MOCK_FAVORITES: FavoritePlace[] = [
-  { id: "place-gyeongbokgung", name: "경복궁", nameEn: "Gyeongbokgung Palace", category: "문화", distanceM: 2100 },
+  { id: "place-gyeongbokgung", name: "경복궁", nameEn: "Gyeongbokgung Palace", category: "문화시설", distanceM: 2100 },
   { id: "place-bukchon", name: "북촌한옥마을", nameEn: "Bukchon Hanok Village", category: "관광지", distanceM: 400 },
   { id: "place-gwangjang", name: "광장시장", nameEn: "Gwangjang Market", category: "시장", distanceM: 1200 },
   { id: "place-anthracite", name: "앤트러사이트 커피", nameEn: "Anthracite Coffee", category: "카페", distanceM: 800 },

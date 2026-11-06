@@ -25,7 +25,7 @@ export type FavoritePlace = {
   id: string;
   name: string; // 경복궁
   nameEn: string; // Gyeongbokgung Palace
-  category: string; // 문화, 관광지, 시장 …
+  category: string; // 관광지, 문화시설, 음식점, 시장, 카페 …
   distanceM?: number; // 내 위치에서의 거리(m)
   imageUrl?: string; // 없으면 회색 기본 이미지
 };

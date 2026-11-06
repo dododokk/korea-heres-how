@@ -55,7 +55,7 @@ export default function ScanPage() {
   };
 
   return (
-    <div className="px-[min(1rem,16px)] pt-[min(1.5rem,24px)] pb-[min(5rem,80px)] font-['Roboto',sans-serif]">
+    <div className="px-[min(1rem,16px)] pt-[min(1.5rem,24px)] pb-[min(5rem,80px)]">
       {toast && (
         <ErrorToast
           message={toast}
@@ -156,7 +156,7 @@ export default function ScanPage() {
               key={example}
               type="button"
               onClick={() => fillExample(example)}
-              className="flex h-[min(2rem,32px)] items-center rounded-full border border-[rgba(43,33,24,0.1)] bg-[rgba(241,230,210,0.6)] px-[min(0.75rem,12px)] font-['Fraunces',serif] text-[min(0.75rem,12px)] leading-[min(1.125rem,18px)] text-[rgba(43,33,24,0.7)]"
+              className="flex h-[min(2rem,32px)] items-center rounded-full border border-[rgba(43,33,24,0.1)] bg-[rgba(241,230,210,0.6)] px-[min(0.75rem,12px)] text-[min(0.75rem,12px)] leading-[min(1.125rem,18px)] text-[rgba(43,33,24,0.7)]"
             >
               {example}
             </button>

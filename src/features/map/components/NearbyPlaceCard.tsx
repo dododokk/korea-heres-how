@@ -25,7 +25,7 @@ export default function NearbyPlaceCard({ place, distanceText, onClick, onGuideC
           onClick();
         }
       }}
-      className="flex w-[min(14.25rem,228px)] cursor-pointer shrink-0 snap-start flex-col overflow-hidden rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.07)] bg-white text-left font-['Roboto',sans-serif]"
+      className="flex w-[min(14.25rem,228px)] cursor-pointer shrink-0 snap-start flex-col overflow-hidden rounded-[min(0.875rem,14px)] border border-[rgba(43,33,24,0.07)] bg-white text-left"
     >
       <div className="relative h-[min(7rem,112px)] w-full bg-[#E2E2E2]">
         {place.imageUrl && <img src={place.imageUrl} alt="" className="size-full object-cover" />}

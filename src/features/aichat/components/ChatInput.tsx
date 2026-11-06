@@ -31,7 +31,7 @@ export default function ChatInput({ onSend, sendDisabled }: ChatInputProps) {
             onChange={(e) => setText(e.target.value)}
             placeholder="팁, 쟁반, 지하철, 카페 무엇이든 물어보세요"
             aria-label="질문 입력"
-            className="min-w-0 flex-1 bg-transparent px-[min(0.5rem,8px)] font-['Roboto',sans-serif] text-[min(0.875rem,14px)] leading-[min(1.25rem,20px)] text-[#2B2118] outline-none placeholder:text-[rgba(43,33,24,0.4)]"
+            className="min-w-0 flex-1 bg-transparent px-[min(0.5rem,8px)] text-[min(0.875rem,14px)] leading-[min(1.25rem,20px)] text-[#2B2118] outline-none placeholder:text-[rgba(43,33,24,0.4)]"
           />
           {/* 글씨가 있고 답변 중이 아닐 때만 진하게(보낼 수 있게) 바뀐다. */}
           <button
@@ -49,7 +49,7 @@ export default function ChatInput({ onSend, sendDisabled }: ChatInputProps) {
             />
           </button>
         </div>
-        <p className="pt-[min(0.5rem,8px)] text-center font-['Roboto',sans-serif] text-[min(0.6875rem,11px)] leading-[min(1.03125rem,16.5px)] text-[rgba(43,33,24,0.4)]">
+        <p className="pt-[min(0.5rem,8px)] text-center text-[min(0.6875rem,11px)] leading-[min(1.03125rem,16.5px)] text-[rgba(43,33,24,0.4)]">
           데모 도우미 — 실제 AI 가이드가 답하는 방식의 예시예요.
         </p>
       </form>

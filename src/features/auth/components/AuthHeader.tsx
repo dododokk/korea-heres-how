@@ -16,7 +16,7 @@ export default function AuthHeader() {
           <p className="text-[min(1.0625rem,17px)] leading-[min(1.328rem,21.25px)] font-semibold tracking-[-0.025em] text-[#2B2118]">
             여기서는?
           </p>
-          <p className="font-['Roboto',sans-serif] text-[min(0.65625rem,10.5px)] leading-[min(0.8203rem,13.125px)] tracking-[0.14em] text-[rgba(43,33,24,0.55)]">
+          <p className="text-[min(0.65625rem,10.5px)] leading-[min(0.8203rem,13.125px)] tracking-[0.14em] text-[rgba(43,33,24,0.55)]">
             Korea, Here's How
           </p>
         </div>

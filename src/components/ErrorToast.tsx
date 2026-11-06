@@ -35,7 +35,7 @@ export default function ErrorToast({
           className="brightness-0 invert"
           style={{ width: size(14), height: size(13) }}
         />
-        <p className="font-['Roboto',sans-serif] text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] font-medium text-white">
+        <p className="text-[min(0.8125rem,13px)] leading-[min(1.21875rem,19.5px)] font-medium text-white">
           {message}
         </p>
       </div>

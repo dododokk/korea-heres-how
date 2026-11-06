@@ -7,7 +7,7 @@ export type Place = {
   contentid: string;
   title: string;
   titleEn: string; // Gyeongbokgung Palace
-  category: "관광지" | "음식점" | "시장" | "카페";
+  category: "관광지" | "문화시설" | "음식점" | "시장" | "카페";
   subcategory: string; // 고궁, 전통 마을, 전통시장 …
   status: string; // 운영 상태 한 줄 (오후 6시까지 운영, 혼잡 · 오후 11시까지 운영 …)
   busy: boolean; // 혼잡하면 상태 점이 주황, 아니면 초록
